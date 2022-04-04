@@ -1,7 +1,7 @@
 .header {
   min-width: 880px;
-    margin: 0px auto 62px;
-    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  margin: 0px auto 62px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__logo {
@@ -11,20 +11,25 @@
 
 @media screen and (max-width: 960px) {
   .header {
-    min-width: 600px;
-   margin-left: 35px;
+    min-width: 320px;
+  }
+
+  .header__logo {
+    margin-left: 35px;
+    padding-top: 0;
   }
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    min-width: 280px;
-   margin-left: 35px;
-   margin-bottom: 36px;
+    min-width: 200px;
+    margin: 0 auto;
+    margin-bottom: 38px;
   }
 
   .header__logo {
-    padding-top: 28px;
     padding-bottom: 32px;
+    margin-left: 27px;
+    padding-top: 28px;
   }
 }

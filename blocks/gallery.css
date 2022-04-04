@@ -14,7 +14,6 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-
 .gallery__item {
   list-style: none;
 }
@@ -66,30 +65,29 @@
 
 @media screen and (max-width: 960px) {
   .gallery {
-    padding-left: 107px;
-    padding-right: 107px;
+    padding-left: 19px;
+    padding-right: 19px;
   }
 
   .gallery__grid {
-    grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: repeat(3, 1fr);
   }
-
-  @media screen and (max-width: 600px) {
-    .gallery__grid {
-      grid-template-columns: 1fr;
-      grid-gap: 12px;
-      padding: 0;
-    }
-  }
-
-@media screen and (max-width: 320px) {
-.gallery {
-  min-width: 320px;
-  display: flex;
-  justify-content: center;
-  padding: 0;
 }
 
-  
+@media screen and (max-width: 600px) {
+  .gallery__grid {
+    display: table;
+    grid-template-columns: 1fr;
+    grid-gap: 12px;
+    padding: 0;
   }
+}
+
+@media screen and (max-width: 320px) {
+  .gallery {
+    min-width: 320px;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+}

@@ -38,6 +38,9 @@
   margin: 0;
   padding-top: 26px;
   grid-area: name;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__occupation {
@@ -45,8 +48,12 @@
   font-size: 18px;
   line-height: 22px;
   display: block;
+  margin-top: 0;
   padding-top: 16px;
   grid-area: description;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__edit-button {
@@ -57,7 +64,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  border: 1px;
+  border: 1px white solid;
   grid-area: button;
   margin-left: 18px;
   margin-top: 40px;
@@ -102,6 +109,7 @@
   }
 }
 
+
 @media screen and (max-width: 600px) {
   .profile {
     min-width: 320px;
@@ -113,17 +121,12 @@
     flex-direction: column;
     align-items: center;
     padding-top: 0;
-
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 0;
   }
 
   .profile__info {
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
   .profile__name {
@@ -137,10 +140,13 @@
 
   .profile__edit-button {
     position: absolute;
-    margin-right: 0 auto;
-    right: 41px;
-    top: 285px;
-    padding: 15px;
+    margin: 0 ;  
+    padding: 8px;
+    min-width: 18px;
+    max-height: 18px;
+    left: 100%;
+    top: 35%;
+    margin-left: 20px;
   }
 
   .profile__add-button {
@@ -151,10 +157,12 @@
   }
 }
 
+
 @media screen and (max-width: 320px) {
   .profile__name {
     text-align: center;
     min-width: 196px;
+    padding-top: 0;
   }
 
   .profile__occupation {
@@ -162,23 +170,21 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    padding-top: 14px;
+    padding-top: 0;
   }
 
   .profile__edit-button {
-    margin-top: 25px;
-    right: 27px;
-    top: 280px;
+    margin-top: 0;
   }
 
   .profile__info {
     margin: 26px 48px;
     justify-content: center;
-    gap: 10px;
+    gap: 14px;
     grid-template-areas:
       "name button"
       "description";
-    margin-bottom: 36px;
+    margin-bottom: 64px;
   }
 
   .profile__container {

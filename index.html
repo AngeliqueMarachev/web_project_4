@@ -13,7 +13,7 @@
     </header>
 
     <main class="page__content">
-      <div class="profile">
+      <section class="profile">
         <div class="profile__container">
           <img
             src="./images/Jacques_Cousteau.jpg"
@@ -22,40 +22,36 @@
           />
 
           <div class="profile__info">
-            <div class="profile__name">Jacques Cousteau</div>
-            <div class="profile__occupation">Explorer</div>
-            <button class="profile__edit-button"></button>
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <p class="profile__occupation">Explorer</p>
+            <button type="button" class="profile__edit-button"></button>
           </div>
 
-          <button class="profile__add-button"></button>
+          <button type="button" class="profile__add-button"></button>
         </div>
-      </div>
+      </section>
 
       <div class="popup">
         <div class="popup__card">
           <div class="popup__content">
-            <button type="button" class="popup__close_button"></button>
-            <h3 class="popup__title">Edit Profile</h3>
+            <button type="button" aria-label="close button" class="popup__close_button"></button>
+            <h2 class="popup__title">Edit Profile</h2>
 
-            <form name="popup__form">
-              <div class="popup__form-control">
+            <form class="popup__form" name="popup__input">
                 <input
                   type="text"
                   name="name"
                   class="popup__input popup__input_type_name"
                   placeholder="Name"
                 />
-              </div>
-              <div class="popup__form-control">
                 <input
                   type="text"
                   name="occupation"
-                  class="popup__input popup__input_type_name"
+                  class="popup__input popup__input_type_occupation"
                   placeholder="About me"
                 />
-              </div>
 
-              <button type="submit" class="button popup__button">Save</button>
+              <button type="submit" class="popup__button">Save</button>
             </form>
           </div>
         </div>
@@ -71,7 +67,7 @@
                 alt="Yosemite Valley"
               />
               <div class="gallery__info">
-                <h3 class="gallery__text">Yosemite Valley</h3>
+                <h2 class="gallery__text">Yosemite Valley</h2>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"
@@ -89,7 +85,7 @@
                 alt="Lake Louise"
               />
               <div class="gallery__info">
-                <h3 class="gallery__text">Lake Louise</h3>
+                <h2 class="gallery__text">Lake Louise</h2>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"
@@ -108,7 +104,7 @@
               />
 
               <div class="gallery__info">
-                <h3 class="gallery__text">Bald Mountains</h3>
+                <h2 class="gallery__text">Bald Mountains</h2>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"
@@ -126,7 +122,7 @@
                 alt="Latemar Mountains"
               />
               <div class="gallery__info">
-                <h3 class="gallery__text">Latemar</h3>
+                <h2 class="gallery__text">Latemar</h2>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"
@@ -145,7 +141,7 @@
               />
 
               <div class="gallery__info">
-                <h3 class="gallery__text">Vanoise National Park</h3>
+                <h2 class="gallery__text">Vanoise National Park</h2>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"
@@ -163,7 +159,7 @@
                 alt="Lago do Braise Valley"
               />
               <div class="gallery__info">
-                <h3 class="gallery__text">Lago do Braise</h3>
+                <h2 class="gallery__text">Lago do Braise</h>
                 <img
                   src="./images/heart.svg"
                   alt="Heart icon"

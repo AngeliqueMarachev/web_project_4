@@ -1,7 +1,7 @@
 // Modal
 const openModalButton = document.querySelector(".profile__edit-button");
 const modal = document.querySelector(".popup");
-const closeModalButton = document.querySelector(".popup__close_button");
+const closeModalButton = document.querySelector(".popup__close-button");
 
 // Form 
 const inputName = document.querySelector(".popup__input_type_name");

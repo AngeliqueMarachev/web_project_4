@@ -1,6 +1,6 @@
 .header {
   min-width: 880px;
-  margin: 0px auto 62px;
+  margin: 0px auto 36px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
@@ -30,5 +30,6 @@
     padding-bottom: 32px;
     margin-left: 27px;
     padding-top: 28px;
+    height: 24px;
   }
 }

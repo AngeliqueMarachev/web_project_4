@@ -32,20 +32,21 @@
       </section>
 
       <div class="popup">
-        <div class="popup__card">
           <div class="popup__content">
-            <button type="button" aria-label="close button" class="popup__close_button"></button>
+            <button type="button" aria-label="close button" class="popup__close-button"></button>
             <h2 class="popup__title">Edit Profile</h2>
 
             <form class="popup__form" name="popup__input">
                 <input
                   type="text"
+                  maxlength="30"
                   name="name"
                   class="popup__input popup__input_type_name"
                   placeholder="Name"
                 />
                 <input
                   type="text"
+                  maxlength="30"
                   name="occupation"
                   class="popup__input popup__input_type_occupation"
                   placeholder="About me"
@@ -54,13 +55,12 @@
               <button type="submit" class="popup__button">Save</button>
             </form>
           </div>
-        </div>
       </div>
 
       <section class="gallery">
-        <div class="gallery__grid">
-          <ul class="gallery__card">
-            <li class="gallery__item">
+        <ul class="gallery__grid">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_1.jpg"
                 class="gallery__img"
@@ -68,17 +68,14 @@
               />
               <div class="gallery__info">
                 <h2 class="gallery__text">Yosemite Valley</h2>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
-          </ul>
+         
 
-          <ul class="gallery__card">
-            <li class="gallery__item">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_2.jpg"
                 class="gallery__img"
@@ -86,17 +83,14 @@
               />
               <div class="gallery__info">
                 <h2 class="gallery__text">Lake Louise</h2>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
-          </ul>
+        
 
-          <ul class="gallery__card">
-            <li class="gallery__item">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_3.jpg"
                 class="gallery__img"
@@ -105,17 +99,14 @@
 
               <div class="gallery__info">
                 <h2 class="gallery__text">Bald Mountains</h2>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
-          </ul>
+       
 
-          <ul class="gallery__card">
-            <li class="gallery__item">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_4.jpg"
                 class="gallery__img"
@@ -123,17 +114,14 @@
               />
               <div class="gallery__info">
                 <h2 class="gallery__text">Latemar</h2>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
-          </ul>
+        
 
-          <ul class="gallery__card">
-            <li class="gallery__item">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_5.jpg"
                 class="gallery__img"
@@ -142,30 +130,23 @@
 
               <div class="gallery__info">
                 <h2 class="gallery__text">Vanoise National Park</h2>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
-          </ul>
 
-          <ul class="gallery__card">
-            <li class="gallery__item">
+          <li class="gallery__card">
+            <div class="gallery__item">
               <img
                 src="./images/img_6.jpg"
                 class="gallery__img"
                 alt="Lago do Braise Valley"
               />
               <div class="gallery__info">
-                <h2 class="gallery__text">Lago do Braise</h>
-                <img
-                  src="./images/heart.svg"
-                  alt="Heart icon"
-                  class="gallery__heart-icon"
-                />
+                <h2 class="gallery__text">Lago do Braise</h2>
+                  <button type="" class="gallery__heart-icon"></button>
               </div>
+            </div>
             </li>
           </ul>
         </div>

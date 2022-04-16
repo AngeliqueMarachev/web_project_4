@@ -8,7 +8,6 @@
 
 .profile__container {
   width: 100%;
-  padding-top: 36px;
   padding-bottom: 46px;
   display: flex;
   align-items: flex-start;
@@ -38,6 +37,7 @@
   margin: 0;
   padding-top: 26px;
   grid-area: name;
+  max-width: 373px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -51,6 +51,7 @@
   margin-top: 0;
   padding-top: 16px;
   grid-area: description;
+  max-width: 415px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -109,7 +110,6 @@
   }
 }
 
-
 @media screen and (max-width: 600px) {
   .profile {
     min-width: 320px;
@@ -132,15 +132,17 @@
   .profile__name {
     font-size: 22px;
     line-height: 27px;
+    max-width: 196px;
   }
 
   .profile__occupation {
     margin: 0 auto;
+    max-width: 282px;
   }
 
   .profile__edit-button {
     position: absolute;
-    margin: 0 ;  
+    margin: 0;
     padding: 8px;
     min-width: 18px;
     max-height: 18px;
@@ -156,7 +158,6 @@
     margin-top: 36px;
   }
 }
-
 
 @media screen and (max-width: 320px) {
   .profile__name {
@@ -175,16 +176,16 @@
 
   .profile__edit-button {
     margin-top: 0;
+    top: 10%;
   }
 
   .profile__info {
-    margin: 26px 48px;
+    margin: 26px 48px 36px;
     justify-content: center;
     gap: 14px;
     grid-template-areas:
       "name button"
       "description";
-    margin-bottom: 64px;
   }
 
   .profile__container {

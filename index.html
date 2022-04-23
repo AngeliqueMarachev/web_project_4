@@ -1,83 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Around the U.S</title>
-    <link rel="stylesheet" href="./pages/index.css" />
-  </head>
-  <body class="page">
-    <header class="header">
-      <img src="./images/lead.svg" alt="Around the U.S" class="header__logo" />
-    </header>
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="UTF-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Around the U.S</title> 
+    <link rel="stylesheet" href="./pages/index.css" /> 
+  </head> 
 
-    <main class="page__content">
-      <section class="profile">
-        <div class="profile__container">
-          <img
+  <body class="page"> 
+    <header class="header"> 
+      <img src="./images/lead.svg" alt="Around the U.S" class="header__logo" /> 
+    </header> 
+
+    <main class="page__content"> 
+      <section class="profile"> 
+        <div class="profile__container"> 
+          <img 
             src="./images/Jacques_Cousteau.jpg"
-            alt="Jacques Cousteau"
-            class="profile__avatar"
-          />
-
-          <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
-            <p class="profile__occupation">Explorer</p>
-            <button type="button" class="profile__edit-button"></button>
-          </div>
-          <button type="button" class="profile__add-button"></button>
-        </div>
-      </section>
-
-      <section class="popup">
-          <div class="popup__content">
-            <h2 class="popup__title">Edit Profile</h2>
-            <button type="button" aria-label="close button" class="popup__close-button"></button>
-            
-            <form class="popup__form" name="popup__input">
-              <label class="popup__formfield">
-                <input
-                  type="text"
-                  maxlength="30"
-                  name="name"
-                  class="popup__input popup__input_type_name"
-                  placeholder="Name"
-                /> </label>
-              <label class="popup__formfield">
-                <input
-                  type="text"
-                  maxlength="30"
-                  name="occupation"
-                  class="popup__input popup__input_type_occupation"
-                  placeholder="About me"
-                /> </label>
-              <button type="submit" class="popup__button">Save</button>
-            </form>
-          </div>
-        </section>
+            alt="Jacques Cousteau" 
+            class="profile__avatar" 
+          /> 
+          <div class="profile__info"> 
+            <h1 class="profile__name">Jacques Cousteau</h1> 
+            <p class="profile__occupation">Explorer</p> 
+            <button type="button" class="profile__edit-button"></button> 
+          </div> 
+          <button type="button" class="profile__add-button"></button> 
+        </div> 
+      </section> 
 
       <section class="gallery"> 
-        <ul class="gallery__grid"></ul> 
-      </section>
+        <ul class="gallery__grid"></ul>
+        </section>
+    </main> 
 
-    </main>
+    <footer class="footer"> 
+      <p class="footer__copyright">© 2022 Around The U.S</p> 
+    </footer> 
 
-    <footer class="footer">
-      <p class="footer__copyright">© 2022 Around The U.S</p>
-    </footer>
+    <section class="popup popup_type_profile"> 
+      <div class="popup__content"> 
+        <h2 class="popup__title">Edit Profile</h2> 
+        <button type="button" aria-label="close button" class="popup__close popup_close_profile"></button> 
+         
+        <form class="popup__form" name="popup__input"> 
+          <label class="popup__formfield"> 
+            <input  type="text"maxlength="30" name="name" class="popup__input popup__input_type_name" placeholder="Name" 
+            /> 
+          </label> 
 
-    <script src="./scripts/index.js"></script>
+          <label class="popup__formfield"> 
+            <input type="text" maxlength="30" name="occupation" class="popup__input popup__input_type_occupation"placeholder="About me" 
+            /> 
+          </label> 
+          <button type="submit" class="popup__button">Save</button> 
+        </form> 
+      </div> 
+    </section> 
+
+    <section class="popup popup_type_add-card"> 
+      <div class="popup__content"> 
+        <h2 class="popup__title">New place</h2> 
+        <button type="button" aria-label="close button" class="popup__close popup_close_add-card"></button> 
+         
+        <form class="popup__form" name="popup__input"> 
+          <label class="popup__formfield"> 
+            <input type="text" maxlength="30" name="name" class="popup__input popup__input_type_name" placeholder="Title" 
+            /> 
+          </label> 
+
+          <label class="popup__formfield"> 
+            <input type="url" maxlength="30" name="occupation" class="popup__input popup__input_type_occupation" placeholder="Image link" 
+            /> 
+          </label> 
+          <button type="submit" class="popup__button">Create</button> 
+        </form> 
+      </div> 
+    </section> 
+
+    <section class="popup popup_type_preview"> 
+      <div class="popup__content popup__content_content_preview"> 
+        <button type="button" aria-label="close button" class="popup__close popup_close_preview"></button> 
+        <img class="popup__image" src="" alt="">
+       </div> 
+    </section> 
 
     <template id="card-template">
-    <li class="gallery__card"> 
-      <div class="gallery__item" style="">
-        <div class="gallery__info">
-          <h2 class="gallery__text"></h2> 
-            <button type="button" class="gallery__heart-icon"></button>
-        </div>
-      </div>
-      </li>
-    </template>
-  </body>
-</html>
+      <li class="gallery__card"> 
+        <div class="gallery__item" style=""></div>
+          <div class="gallery__info">
+            <h2 class="gallery__text"></h2> 
+              <button type="button" class="gallery__heart-icon"></button>
+          </div>
+      
+        </li>
+      </template>
+
+    <script src="./scripts/index.js"></script> 
+
+  </body> 
+</html> 

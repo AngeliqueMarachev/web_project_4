@@ -79,6 +79,13 @@
   cursor: pointer;
 }
 
+.gallery__heart-icon_clicked {
+  background-image: url(../images/heart_black.svg);
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
 @media screen and (max-width: 960px) {
   .gallery {
     padding-left: 19px;

@@ -67,6 +67,15 @@ function createCardElement(card) {
 
   cardImage.addEventListener("click", () => onImagePreview(card));
 
+  function toggleLikeButton(cardLikeButton) {
+    if (!cardLikeButton.classList.contains("gallery__heart-icon_clicked")) {
+    }
+    cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
+  }
+
+ cardLikeButton.addEventListener("click", () => toggleLikeButton(cardLikeButton));
+
+
   return cardElement;
 }
 
@@ -96,7 +105,9 @@ function toggleModalWindow(modalWindow) {
   }
 
   modalWindow.classList.toggle("popup_open");
-}
+};
+
+
 
 
 ///////////
@@ -104,6 +115,7 @@ function toggleModalWindow(modalWindow) {
 //////////
 
 addCardButton.addEventListener("click", () => toggleModalWindow(addCardModal));
+
 addCardModalCloseButton.addEventListener("click", () => toggleModalWindow(addCardModal));
 
 previewModalCloseButton.addEventListener("click", () => toggleModalWindow(previewModal));
@@ -111,6 +123,7 @@ previewModalCloseButton.addEventListener("click", () => toggleModalWindow(previe
 profileModalForm.addEventListener("submit", formSubmitHandler);
 
 openModalButton.addEventListener("click", () => toggleModalWindow(profileModal));
+
 closeModalButton.addEventListener("click", () => toggleModalWindow(profileModal));
 
 

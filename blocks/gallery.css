@@ -18,6 +18,7 @@
 .gallery__item {
   height: 361px;
   border-radius: 10px 10px 0 0;
+
 }
 
 .gallery__card {
@@ -27,6 +28,7 @@
   padding: 0;
   max-width: 282px;
   margin-top: 0;
+  position: relative;
 }
 
 .gallery__card:last-of-type {
@@ -84,6 +86,26 @@
   display: flex;
   visibility: visible;
   opacity: 1;
+}
+
+.gallery__delete-button {
+  background-image: url(../images/trash_icon.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 21px;
+  height: 19px;
+  border: 1px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.gallery__delete-button:hover {
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 960px) {

@@ -59,8 +59,10 @@ function createCardElement(card) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(".gallery__item");
-  const cardLikeButton = cardElement.querySelector(".gallery__heart-icon");
   const cardTitle = cardElement.querySelector(".gallery__text");
+
+  const cardLikeButton = cardElement.querySelector(".gallery__heart-icon");
+  const cardDeleteButton = cardElement.querySelector(".gallery__delete-button");
 
   cardImage.style.backgroundImage = `url(${card.link})`;
   cardTitle.textContent = card.name;
@@ -73,8 +75,11 @@ function createCardElement(card) {
     cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
   }
 
- cardLikeButton.addEventListener("click", () => toggleLikeButton(cardLikeButton));
+  cardLikeButton.addEventListener("click", () => toggleLikeButton(cardLikeButton));
 
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   return cardElement;
 }

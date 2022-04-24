@@ -55,7 +55,7 @@ const placesList = document.querySelector(".gallery__grid")
 ////////////
 
 function createCardElement(card) {
-  const cardTemplate = document.querySelector("#card-template").content.querySelector(".gallery__card");
+  const cardTemplate = document.querySelector("#gallery-template").content.querySelector(".gallery__card");
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(".gallery__item");
@@ -94,7 +94,9 @@ function formSubmitHandler(evt) {
 
 const onImagePreview = card => {
   const popupImage = previewModal.querySelector(".popup__image");
+  const popupTitle = previewModal.querySelector(".popup__text");
   popupImage.src = card.link;
+  popupTitle.textContent = card.name;
   toggleModalWindow(previewModal);
 };
 

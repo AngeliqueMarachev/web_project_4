@@ -39,6 +39,7 @@
 .popup__content_content_preview {
   background: transparent;
   padding: 0;
+  box-shadow: none;
   /* max-width: 75vw;
   max-height: 75vh;
   width: auto;
@@ -48,7 +49,15 @@
 .popup__image {
   max-width: 75vw;
   max-height: 75vh;
+}
 
+.popup__text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFFFFF;
 }
 
 .popup__close {

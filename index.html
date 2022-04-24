@@ -7,12 +7,10 @@
     <title>Around the U.S</title> 
     <link rel="stylesheet" href="./pages/index.css" /> 
   </head> 
-
   <body class="page"> 
     <header class="header"> 
       <img src="./images/lead.svg" alt="Around the U.S" class="header__logo" /> 
     </header> 
-
     <main class="page__content"> 
       <section class="profile"> 
         <div class="profile__container"> 
@@ -29,16 +27,13 @@
           <button type="button" class="profile__add-button"></button> 
         </div> 
       </section> 
-
       <section class="gallery"> 
         <ul class="gallery__grid"></ul>
         </section>
     </main> 
-
     <footer class="footer"> 
       <p class="footer__copyright">© 2022 Around The U.S</p> 
     </footer> 
-
     <section class="popup popup_type_profile"> 
       <div class="popup__content"> 
         <h2 class="popup__title">Edit Profile</h2> 
@@ -49,7 +44,6 @@
             <input  type="text"maxlength="30" name="name" class="popup__input popup__input_type_name" placeholder="Name" 
             /> 
           </label> 
-
           <label class="popup__formfield"> 
             <input type="text" maxlength="30" name="occupation" class="popup__input popup__input_type_occupation"placeholder="About me" 
             /> 
@@ -58,7 +52,6 @@
         </form> 
       </div> 
     </section> 
-
     <section class="popup popup_type_add-card"> 
       <div class="popup__content"> 
         <h2 class="popup__title">New place</h2> 
@@ -69,7 +62,6 @@
             <input type="text" maxlength="30" name="name" class="popup__input popup__input_type_name" placeholder="Title" 
             /> 
           </label> 
-
           <label class="popup__formfield"> 
             <input type="url" maxlength="30" name="occupation" class="popup__input popup__input_type_occupation" placeholder="Image link" 
             /> 
@@ -78,7 +70,6 @@
         </form> 
       </div> 
     </section> 
-
     <section class="popup popup_type_preview"> 
       <div class="popup__content popup__content_content_preview"> 
         <button type="button" aria-label="close button" class="popup__close popup_close_preview"></button> 
@@ -97,11 +88,9 @@
               <button type="button" class="gallery__heart-icon"></button>
 
           </div>
-      
+
         </li>
       </template>
-
     <script src="./scripts/index.js"></script> 
-
   </body> 
 </html> 

@@ -76,7 +76,7 @@ function createCardElement(card) {
   }
 
   cardLikeButton.addEventListener("click", () => toggleLikeButton(cardLikeButton));
-
+  
   cardDeleteButton.addEventListener("click", () => {
     cardElement.remove();
   });

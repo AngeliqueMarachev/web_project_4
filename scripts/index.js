@@ -122,7 +122,7 @@ const onImagePreview = card => {
 
 
 function renderCard(card, wrapper) {
-  wrapper.append(createCardElement(card));
+  wrapper.prepend(createCardElement(card));
 };
 
 function toggleModalWindow(modalWindow) {

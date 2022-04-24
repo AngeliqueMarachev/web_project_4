@@ -40,10 +40,11 @@
   background: transparent;
   padding: 0;
   box-shadow: none;
-  /* max-width: 75vw;
+  max-width: 75vw;
   max-height: 75vh;
   width: auto;
-  display: flex; */
+  height: auto;
+  display: flex;
 }
 
 .popup__image {

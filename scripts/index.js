@@ -34,9 +34,10 @@ const initialCards = [
 const addCardModal = document.querySelector(".popup_type_add-card");
 const previewModal = document.querySelector(".popup_type_preview");
 const profileModal = document.querySelector(".popup_type_profile");
-const profileModalForm = document.querySelector(".popup__form");
-const inputName = document.querySelector(".popup__input_type_name");
-const inputOccupation = document.querySelector(".popup__input_type_occupation");
+
+const editForm = document.querySelector(".popup_form-edit");
+const createForm = document.querySelector(".popup_form-create"); 
+
 
 // Buttons
 const addCardButton = document.querySelector(".profile__add-button");
@@ -46,6 +47,13 @@ const closeModalButton = document.querySelector(".popup_close_profile");
 const openModalButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
+
+// Form Data
+const titleInputValue = editForm.querySelector(".popup_input_type_name"); 
+const descriptionInputValue = editForm.querySelector(".popup_input_type_occupation"); 
+const nameInputValue = document.querySelector(".popup_input_type_title"); 
+const linkInputValue = document.querySelector(".popup_input_type_link"); 
+
 
 // Wrappers
 const placesList = document.querySelector(".gallery__grid")
@@ -85,12 +93,24 @@ function createCardElement(card) {
 }
 
 
-function formSubmitHandler(evt) {
+function editFormSubmitHandler(evt) {
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileOccupation.textContent = inputOccupation.value;
+  profileName.textContent = titleInputValue.value;
+  profileOccupation.textContent = descriptionInputValue.value;
   toggleModalWindow(profileModal);
-}
+};
+
+function createFormSubmitHandler(evt) {
+  evt.preventDefault();
+
+  renderCard({
+    name: nameInputValue.value,
+    link: linkInputValue.value,
+  },
+    placesList);
+  toggleModalWindow(addCardModal);
+
+};
 
 const onImagePreview = card => {
   const popupImage = previewModal.querySelector(".popup__image");
@@ -103,12 +123,12 @@ const onImagePreview = card => {
 
 function renderCard(card, wrapper) {
   wrapper.append(createCardElement(card));
-}
+};
 
 function toggleModalWindow(modalWindow) {
   if (!modalWindow.classList.contains("popup_open")) {
-    inputName.value = profileName.textContent;
-    inputOccupation.value = profileOccupation.textContent;
+    titleInputValue.value = profileName.textContent;
+    descriptionInputValue.value = profileOccupation.textContent;
   }
 
   modalWindow.classList.toggle("popup_open");
@@ -127,11 +147,13 @@ addCardModalCloseButton.addEventListener("click", () => toggleModalWindow(addCar
 
 previewModalCloseButton.addEventListener("click", () => toggleModalWindow(previewModal));
 
-profileModalForm.addEventListener("submit", formSubmitHandler);
+editForm.addEventListener("submit", editFormSubmitHandler);
+createForm.addEventListener("submit", createFormSubmitHandler);
 
 openModalButton.addEventListener("click", () => toggleModalWindow(profileModal));
 
 closeModalButton.addEventListener("click", () => toggleModalWindow(profileModal));
+
 
 
 initialCards.forEach(card => renderCard(card, placesList));

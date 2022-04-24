@@ -34,36 +34,36 @@
     <footer class="footer"> 
       <p class="footer__copyright">© 2022 Around The U.S</p> 
     </footer> 
-    <section class="popup popup_type_profile">  <!-- "js-edit-popup" -->
+    <section class="popup popup_type_profile"> 
       <div class="popup__content"> 
         <h2 class="popup__title">Edit Profile</h2> 
         <button type="button" aria-label="close button" class="popup__close popup_close_profile"></button> 
          
-        <form class="popup__form" name="popup__input"> 
+        <form class="popup__form popup_form-edit" name="popup__input"> 
           <label class="popup__formfield"> 
-            <input  type="text"maxlength="30" name="name" class="popup__input popup__input_type_name" placeholder="Name" 
+            <input  type="text"maxlength="30" name="name" class="popup__input popup_input_type_name" placeholder="Name" 
             /> 
           </label> 
           <label class="popup__formfield"> 
-            <input type="text" maxlength="30" name="occupation" class="popup__input popup__input_type_occupation"placeholder="About me" 
+            <input type="text" maxlength="30" name="occupation" class="popup__input popup_input_type_occupation"placeholder="About me" 
             /> 
           </label> 
           <button type="submit" class="popup__button">Save</button> 
         </form> 
       </div> 
     </section> 
-    <section class="popup popup_type_add-card">  <!-- "js-add-popup"  -->
+    <section class="popup popup_type_add-card"> 
       <div class="popup__content"> 
         <h2 class="popup__title">New place</h2> 
         <button type="button" aria-label="close button" class="popup__close popup_close_add-card"></button> 
          
-        <form class="popup__form" name="popup__input"> 
+        <form class="popup__form popup_form-create" name="popup__input"> 
           <label class="popup__formfield"> 
-            <input type="text" maxlength="30" name="title" class="popup__input popup__input_type_title" placeholder="Title" 
+            <input type="text" maxlength="30" name="title" class="popup__input popup_input_type_title" placeholder="Title" 
             /> 
           </label> 
           <label class="popup__formfield"> 
-            <input type="url" maxlength="30" name="link" class="popup__input popup__input_type_link" placeholder="Image link" 
+            <input type="url" maxlength="" name="link" class="popup__input popup_input_type_link" placeholder="Image link" 
             /> 
           </label> 
           <button type="submit" class="popup__button">Create</button> 
@@ -74,7 +74,7 @@
       <div class="popup__content popup__content_content_preview"> 
         <button type="button" aria-label="close button" class="popup__close popup_close_preview"></button> 
         <img class="popup__image" src="" alt="">
-        <h5 class="popup__text"></h5>
+        <h3 class="popup__text"></h4>
        </div> 
     </section> 
 

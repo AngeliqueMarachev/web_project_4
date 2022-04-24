@@ -41,14 +41,12 @@
   padding: 0;
   box-shadow: none;
   max-width: 75vw;
-  max-height: 75vh;
   width: auto;
   height: auto;
   display: flex;
 }
 
 .popup__image {
-  max-width: 75vw;
   max-height: 75vh;
 }
 
@@ -59,6 +57,8 @@
   font-size: 12px;
   line-height: 15px;
   color: #FFFFFF;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .popup__close {

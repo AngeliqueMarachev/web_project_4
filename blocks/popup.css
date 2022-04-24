@@ -48,6 +48,7 @@
 
 .popup__image {
   max-height: 75vh;
+  white-space: normal;
 }
 
 .popup__text {

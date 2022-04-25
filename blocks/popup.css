@@ -41,6 +41,7 @@
   padding: 0;
   box-shadow: none;
   max-width: 75vw;
+  max-height: 75vh;
   width: auto;
   height: auto;
   display: flex;

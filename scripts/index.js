@@ -31,9 +31,9 @@ const initialCards = [
 
 
 // Modals
-const addCardModal = document.querySelector(".popup__type_add-card");
-const previewModal = document.querySelector(".popup__type_preview");
-const profileModal = document.querySelector(".popup__type_profile");
+const addCardModal = document.querySelector(".popup_type_add-card");
+const previewModal = document.querySelector(".popup_type_preview");
+const profileModal = document.querySelector(".popup_type_profile");
 
 const editForm = document.querySelector(".popup__form-edit");
 const createForm = document.querySelector(".popup__form-create"); 

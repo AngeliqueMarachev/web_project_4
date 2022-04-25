@@ -75,11 +75,11 @@ function createCardElement(card) {
   cardImage.style.backgroundImage = `url(${card.link})`;
   cardTitle.textContent = card.name;
 
-  cardImage.addEventListener("click", () => onImagePreview(card));
+  cardImage.addEventListener("click", () => openImagePreview(card));
 
   function toggleLikeButton(cardLikeButton) {
-    if (!cardLikeButton.classList.contains("gallery__heart-icon_clicked")) {
-    }
+    
+
     cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
   }
 
@@ -93,14 +93,16 @@ function createCardElement(card) {
 }
 
 
-function editFormSubmitHandler(evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = titleInputValue.value;
   profileOccupation.textContent = descriptionInputValue.value;
   toggleModalWindow(profileModal);
+
+  editForm.reset();
 };
 
-function createFormSubmitHandler(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
 
   renderCard({
@@ -110,15 +112,16 @@ function createFormSubmitHandler(evt) {
     placesList);
   toggleModalWindow(addCardModal);
 
+  createForm.reset();
 };
 
-const onImagePreview = card => {
+function openImagePreview(card) {
   const popupImage = previewModal.querySelector(".popup__image");
   const popupTitle = previewModal.querySelector(".popup__text");
-  popupImage.src = card.link;
+  popupImage.src = card.link; Image.alt
   popupTitle.textContent = card.name;
   toggleModalWindow(previewModal);
-};
+}
 
 
 function renderCard(card, wrapper) {
@@ -147,8 +150,8 @@ addCardModalCloseButton.addEventListener("click", () => toggleModalWindow(addCar
 
 previewModalCloseButton.addEventListener("click", () => toggleModalWindow(previewModal));
 
-editForm.addEventListener("submit", editFormSubmitHandler);
-createForm.addEventListener("submit", createFormSubmitHandler);
+editForm.addEventListener("submit", handleProfileFormSubmit);
+createForm.addEventListener("submit", handleCardFormSubmit);
 
 openModalButton.addEventListener("click", () => toggleModalWindow(profileModal));
 

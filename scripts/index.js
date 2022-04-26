@@ -61,10 +61,24 @@ const linkInputValue = document.querySelector(".popup__input_type_link");
 // Wrappers
 const placesList = document.querySelector(".gallery__grid");
 
+
 /////////////
 // Functions
 ////////////
 
+// Open and close Profile Modal
+openModalButton.addEventListener("click", function () { 
+  profileModal.classList.add("popup_open"); 
+  titleInputValue.value = profileName.textContent;
+  descriptionInputValue.value = profileOccupation.textContent;
+ }); 
+
+closeModalButton.addEventListener("click", function () { 
+  profileModal.classList.remove("popup_open") 
+}); 
+
+  
+// Other functions
 function createCardElement(card) {
   const cardTemplate = document
     .querySelector("#gallery-template")
@@ -134,27 +148,14 @@ function renderCard(card, wrapper) {
 }
 
 function toggleModalWindow(modalWindow) {
-  if (!modalWindow.classList.contains("popup_open")) {
-  }
   modalWindow.classList.toggle("popup_open");
 }
-
-
-function openProfilePopup(modalWindow) {
-  const handleEditButtonClick = () => {
-    toggleModalWindow(profileModal)
-
-    titleInputValue.value = profileName.textContent;
-    descriptionInputValue.value = profileOccupation.textContent;
-  };
-
-  openModalButton.addEventListener("click", handleEditButtonClick);
-};
 
 
 ///////////
 // Event handlers
 //////////
+
 
 addCardButton.addEventListener("click", () => toggleModalWindow(addCardModal));
 
@@ -169,12 +170,5 @@ previewModalCloseButton.addEventListener("click", () =>
 editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 addCardPopup.addEventListener("submit", handleCardFormSubmit);
 
-openModalButton.addEventListener("click", () =>
-    toggleModalWindow(profileModal)
-  );
-
-closeModalButton.addEventListener("click", () =>
-  toggleModalWindow(profileModal)
-);
-
 initialCards.forEach((card) => renderCard(card, placesList));
+

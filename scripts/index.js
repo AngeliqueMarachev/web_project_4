@@ -61,19 +61,10 @@ const linkInputValue = document.querySelector(".popup__input_type_link");
 // Wrappers
 const placesList = document.querySelector(".gallery__grid");
 
-
 /////////////
 // Functions
 ////////////
 
-function openProfilePopup() {
-  // profileModal.classList.add("popup_open"); {
-    profileName.textContent = titleInputValue.value;
-    profileOccupation.textContent = descriptionInputValue.value;
-
-    openProfilePopup(editProfilePopup);
-};
-  
 function createCardElement(card) {
   const cardTemplate = document
     .querySelector("#gallery-template")
@@ -93,7 +84,7 @@ function createCardElement(card) {
 
   function toggleLikeButton(cardLikeButton) {
     cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
-  };
+  }
 
   cardLikeButton.addEventListener("click", () =>
     toggleLikeButton(cardLikeButton)
@@ -104,14 +95,19 @@ function createCardElement(card) {
   });
 
   return cardElement;
-};
+}
+
+function openProfilePopup() {
+  profileName.textContent = titleInputValue.value;
+  profileOccupation.textContent = descriptionInputValue.value;
+  openProfilePopup(editProfilePopup);
+}
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = titleInputValue.value;
   profileOccupation.textContent = descriptionInputValue.value;
   toggleModalWindow(profileModal);
-
 }
 
 function handleCardFormSubmit(evt) {
@@ -146,20 +142,19 @@ function toggleModalWindow(modalWindow) {
   modalWindow.classList.toggle("popup_open");
 }
 
-
 ///////////
 // Event handlers
 //////////
 
-openModalButton.addEventListener("click", function () { 
-  profileModal.classList.add("popup_open"); 
+openModalButton.addEventListener("click", function () {
+  profileModal.classList.add("popup_open");
   titleInputValue.value = profileName.textContent;
   descriptionInputValue.value = profileOccupation.textContent;
- }); 
+});
 
-closeModalButton.addEventListener("click", function () { 
-  profileModal.classList.remove("popup_open") 
-});  
+closeModalButton.addEventListener("click", function () {
+  profileModal.classList.remove("popup_open");
+});
 
 addCardButton.addEventListener("click", () => toggleModalWindow(addCardModal));
 
@@ -175,4 +170,3 @@ editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 addCardPopup.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((card) => renderCard(card, placesList));
-

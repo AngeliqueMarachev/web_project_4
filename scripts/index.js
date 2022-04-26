@@ -139,13 +139,16 @@ function toggleModalWindow(modalWindow) {
   modalWindow.classList.toggle("popup_open");
 }
 
-function openPropfilePopup(modalWindow) {
+
+function openProfilePopup(modalWindow) {
   const handleEditButtonClick = () => {
     toggleModalWindow(profileModal)
 
     titleInputValue.value = profileName.textContent;
     descriptionInputValue.value = profileOccupation.textContent;
   };
+
+  openModalButton.addEventListener("click", handleEditButtonClick);
 };
 
 

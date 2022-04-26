@@ -66,19 +66,14 @@ const placesList = document.querySelector(".gallery__grid");
 // Functions
 ////////////
 
-// Open and close Profile Modal
-openModalButton.addEventListener("click", function () { 
-  profileModal.classList.add("popup_open"); 
-  titleInputValue.value = profileName.textContent;
-  descriptionInputValue.value = profileOccupation.textContent;
- }); 
+function openProfilePopup() {
+  // profileModal.classList.add("popup_open"); {
+    profileName.textContent = titleInputValue.value;
+    profileOccupation.textContent = descriptionInputValue.value;
 
-closeModalButton.addEventListener("click", function () { 
-  profileModal.classList.remove("popup_open") 
-}); 
-
+    openProfilePopup(editProfilePopup);
+};
   
-// Other functions
 function createCardElement(card) {
   const cardTemplate = document
     .querySelector("#gallery-template")
@@ -156,6 +151,15 @@ function toggleModalWindow(modalWindow) {
 // Event handlers
 //////////
 
+openModalButton.addEventListener("click", function () { 
+  profileModal.classList.add("popup_open"); 
+  titleInputValue.value = profileName.textContent;
+  descriptionInputValue.value = profileOccupation.textContent;
+ }); 
+
+closeModalButton.addEventListener("click", function () { 
+  profileModal.classList.remove("popup_open") 
+});  
 
 addCardButton.addEventListener("click", () => toggleModalWindow(addCardModal));
 

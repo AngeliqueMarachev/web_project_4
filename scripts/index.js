@@ -43,8 +43,8 @@ const addCardModalCloseButton = document.querySelector(
   ".popup__close_add-card"
 );
 const previewModalCloseButton = document.querySelector(".popup__close_preview");
-const closeModalButton = document.querySelector(".popup__close_profile");
-const openModalButton = document.querySelector(".profile__edit-button");
+const closeProfileModalButton = document.querySelector(".popup__close_profile");
+const openProfileModalButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
 
@@ -146,14 +146,14 @@ function toggleModalWindow(modalWindow) {
 // Event handlers
 //////////
 
-openModalButton.addEventListener("click", function () {
-  profileModal.classList.add("popup_open");
+openProfileModalButton.addEventListener("click", function () {
   titleInputValue.value = profileName.textContent;
   descriptionInputValue.value = profileOccupation.textContent;
+  toggleModalWindow(profileModal);
 });
 
-closeModalButton.addEventListener("click", function () {
-  profileModal.classList.remove("popup_open");
+closeProfileModalButton.addEventListener("click", function () {
+  toggleModalWindow(profileModal);
 });
 
 addCardButton.addEventListener("click", () => toggleModalWindow(addCardModal));

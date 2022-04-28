@@ -20,6 +20,10 @@
   border-radius: 10px 10px 0 0;
 }
 
+.gallery__item:hover {
+  cursor: pointer;
+}
+
 .gallery__card {
   background-color: white;
   border-radius: 10px;
@@ -39,11 +43,6 @@
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  cursor: pointer;
-}
-
-.gallery__img:hover {
-  cursor: pointer;
 }
 
 .gallery__info {

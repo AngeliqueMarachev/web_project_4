@@ -36,6 +36,7 @@ const profileModal = document.querySelector(".popup_type_profile");
 
 const editProfilePopup = document.querySelector(".popup__form-edit");
 const addCardPopup = document.querySelector(".popup__form-create");
+const popupSelector = "popup_open";
 
 // Buttons
 const addCardButton = document.querySelector(".profile__add-button");
@@ -58,11 +59,13 @@ const linkInputValue = document.querySelector(".popup__input_type_link");
 // Wrappers
 const placesList = document.querySelector(".gallery__grid");
 
+
+
 /////////////
 // Functions
 ////////////
 
-// 1. Create Cards
+// Create Cards
 function createCardElement(card) {
   const cardTemplate = document.querySelector("#gallery-template").content.querySelector(".gallery__card");
   const cardElement = cardTemplate.cloneNode(true);
@@ -93,7 +96,7 @@ function createCardElement(card) {
   return cardElement;
 }
 
-// 2. Profile Popup
+// Profile Popup
 function openProfilePopup() {
   profileName.textContent = titleInputValue.value;
   profileOccupation.textContent = descriptionInputValue.value;
@@ -107,7 +110,8 @@ function handleProfileFormSubmit(evt) {
   toggleModalWindow(profileModal);
 }
 
-// 3. Add New Card
+
+// Add New Card
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(
@@ -122,7 +126,7 @@ function handleCardFormSubmit(evt) {
   addCardPopup.reset();
 }
 
-// 4. Opem Image Popup
+// Open Image Popup
 function openImagePreview(card) {
   const popupImage = previewModal.querySelector(".popup__image");
   const popupTitle = previewModal.querySelector(".popup__text");
@@ -138,7 +142,9 @@ function renderCard(card, wrapper) {
 
 function toggleModalWindow(modalWindow) {
   modalWindow.classList.toggle("popup_open");
+
 }
+
 
 ///////////
 // Event handlers
@@ -168,3 +174,11 @@ editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 addCardPopup.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((card) => renderCard(card, placesList));
+
+// Escape Key Event
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(openedPopup);
+  }
+});

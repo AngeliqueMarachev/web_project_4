@@ -175,9 +175,17 @@ addCardPopup.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((card) => renderCard(card, placesList));
 
-// Escape Key Event
+// Close Popup by Escape Key Event
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(openedPopup);
+  }
+});
+
+// Close Popup by Click Event
+document.addEventListener("click", function (evt) {
+  if (evt.target.closest(".popup")) {
     const openedPopup = document.querySelector(`.${popupSelector}`);
     toggleModalWindow(openedPopup);
   }

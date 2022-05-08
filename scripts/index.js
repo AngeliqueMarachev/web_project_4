@@ -45,16 +45,13 @@ const addCardModalCloseButton = document.querySelector(
 const previewModalCloseButton = document.querySelector(".popup__close_preview");
 const closeProfileModalButton = document.querySelector(".popup__close_profile");
 const openProfileModalButton = document.querySelector(".profile__edit-button");
+
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
 
 // Form Data
-const titleInputValue = editProfilePopup.querySelector(
-  ".popup__input_type_name"
-);
-const descriptionInputValue = editProfilePopup.querySelector(
-  ".popup__input_type_occupation"
-);
+const titleInputValue = editProfilePopup.querySelector(".popup__input_type_name");
+const descriptionInputValue = editProfilePopup.querySelector(".popup__input_type_occupation");
 const nameInputValue = document.querySelector(".popup__input_type_title");
 const linkInputValue = document.querySelector(".popup__input_type_link");
 
@@ -65,10 +62,9 @@ const placesList = document.querySelector(".gallery__grid");
 // Functions
 ////////////
 
+// 1. Create Cards
 function createCardElement(card) {
-  const cardTemplate = document
-    .querySelector("#gallery-template")
-    .content.querySelector(".gallery__card");
+  const cardTemplate = document.querySelector("#gallery-template").content.querySelector(".gallery__card");
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(".gallery__item");
@@ -97,6 +93,7 @@ function createCardElement(card) {
   return cardElement;
 }
 
+// 2. Profile Popup
 function openProfilePopup() {
   profileName.textContent = titleInputValue.value;
   profileOccupation.textContent = descriptionInputValue.value;
@@ -110,9 +107,9 @@ function handleProfileFormSubmit(evt) {
   toggleModalWindow(profileModal);
 }
 
+// 3. Add New Card
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-
   renderCard(
     {
       name: nameInputValue.value,
@@ -125,6 +122,7 @@ function handleCardFormSubmit(evt) {
   addCardPopup.reset();
 }
 
+// 4. Opem Image Popup
 function openImagePreview(card) {
   const popupImage = previewModal.querySelector(".popup__image");
   const popupTitle = previewModal.querySelector(".popup__text");

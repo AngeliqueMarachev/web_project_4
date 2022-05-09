@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="UTF-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Around the U.S</title> 
+    <link rel="stylesheet" href="./pages/index.css" /> 
+  </head> 
+  <body class="page"> 
+    <header class="header"> 
+      <img src="./images/lead.svg" alt="Around the U.S" class="header__logo" /> 
+    </header> 
+    <main class="page__content"> 
+      <section class="profile"> 
+        <div class="profile__container"> 
+          <img 
+            src="./images/Jacques_Cousteau.jpg"
+            alt="Jacques Cousteau" 
+            class="profile__avatar" 
+          /> 
+          <div class="profile__info"> 
+            <h1 class="profile__name">Jacques Cousteau</h1> 
+            <p class="profile__occupation">Explorer</p> 
+            <button type="button" class="profile__edit-button"></button> 
+          </div> 
+          <button type="button" class="profile__add-button"></button> 
+        </div> 
+      </section> 
+      <section class="gallery"> 
+        <ul class="gallery__grid"></ul>
+        </section>
+    </main> 
+  
+    <footer class="footer"> 
+      <p class="footer__copyright">© 2022 Around The U.S</p> 
+    </footer> 
+
+    <!-- PROFILE POPUP -->
+    <div class="popup popup_type_profile"> 
+      <div class="popup__content"> 
+        <h2 class="popup__title">Edit Profile</h2> 
+        <button type="button" aria-label="close button" class="popup__close popup__close_profile"></button> 
+         <!-- PROFILE POPUP FORM -->
+        <form class="popup__form popup__form-edit" name="profileForm" novalidate> 
+          <label class="popup__label"> 
+            <input 
+            class="popup__input popup__input_type_name" 
+            id="name-input"
+            type="text" 
+            minlength="2" 
+            maxlength="40" 
+            name="name" 
+            placeholder="Name" 
+            required
+            /> 
+            <span id="name-input-error" class="popup__input-error"></span> 
+          </label> 
+          <label class="popup__label"> 
+            <input 
+            class="popup__input popup__input_type_occupation" 
+            id="occupation-input"
+            type="text" 
+            minlength="2" 
+            maxlength="200" 
+            name="occupation" 
+            placeholder="About me" 
+            required 
+            /> 
+            <span id="occupation-input-error" class="popup__input-error"></span>
+          </label> 
+          <button type="submit" class="button popup__button">Save</button> 
+        </form> 
+      </div> 
+    </div> 
+
+    <!-- PLACES POPUP -->
+    <div class="popup popup_type_add-card"> 
+      <div class="popup__content"> 
+        <h2 class="popup__title">New place</h2> 
+        <button type="button" aria-label="close button" class="popup__close popup__close_add-card"></button> 
+         
+        <form class="popup__form popup__form-create" name="new place" novalidate> 
+          <label class="popup__label"> 
+            <input 
+            class="popup__input popup__input_type_title" 
+            id="title-input"
+            type="text" 
+            minlength="1" 
+            maxlength="30" 
+            name="title" 
+            placeholder="Title" 
+            required 
+            /> 
+            <span id="title-input-error" class="popup__input-error"></span>
+          </label> 
+
+          <label class="popup__label"> 
+            <input 
+            class="popup__input popup__input_type_link" 
+            id="link-input"
+            type="url" 
+            name="link" 
+            placeholder="Image link" 
+            required 
+            /> 
+            <span id="link-input-error" class="popup__input-error"></span>
+          </label> 
+          <button type="submit" class="popup__button">Create</button> 
+        </form> 
+      </div> 
+    </div> 
+
+    <!-- IMAGES POPUP -->
+    <div class="popup popup_type_preview"> 
+      <div class="popup__content popup__content_content_preview"> 
+        <button type="button" aria-label="close button" class="popup__close popup__close_preview"></button> 
+        <img class="popup__image" src="#">
+        <div class="popup__text"></div>
+       </div> 
+      </div> 
+
+    <template id="gallery-template">
+      <li class="gallery__card"> 
+        <div class="gallery__item" style=""></div>
+        <button type="button" class="gallery__delete-button"></button>
+          <div class="gallery__info">
+            <h2 class="gallery__text"></h2> 
+              <button type="button" class="gallery__heart-icon"></button>
+          </div>
+        </li>
+      </template>
+
+      <script src="./scripts/validate.js"></script> 
+    <script src="./scripts/index.js"></script> 
+
+  </body> 
+</html> 

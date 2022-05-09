@@ -110,6 +110,10 @@ function handleProfileFormSubmit(evt) {
   toggleModalWindow(profileModal);
 }
 
+// Universal Popup
+function toggleModalWindow(modalWindow) {
+  modalWindow.classList.toggle(popupSelector);
+}
 
 // Add New Card
 function handleCardFormSubmit(evt) {
@@ -138,11 +142,6 @@ function openImagePreview(card) {
 
 function renderCard(card, wrapper) {
   wrapper.prepend(createCardElement(card));
-}
-
-function toggleModalWindow(modalWindow) {
-  modalWindow.classList.toggle("popup_open");
-
 }
 
 
@@ -174,6 +173,7 @@ editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 addCardPopup.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((card) => renderCard(card, placesList));
+
 
 // Close Popup by Escape Key Event
 document.addEventListener("keydown", function (evt) {

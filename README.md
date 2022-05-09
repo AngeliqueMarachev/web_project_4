@@ -1,10 +1,10 @@
-# Project 4: Around The U.S.
+# Project 4: Around The U.S. Part 2
 
 ### Overview
-Working with Figma as a brief for Project
-Working with Responsive Design
-Working with Grid Layout and FlexBox
-Working with JavaScript to create Popup Form
+Continuing to develop the project by adding form validatio  and including two new functions to remove the popup: 
+1. an escape key function 
+2. a click function
+
 
 **Figma**
 

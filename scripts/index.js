@@ -178,15 +178,15 @@ initialCards.forEach((card) => renderCard(card, placesList));
 // Close Popup by Escape Key Event
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(`.${popupSelector}`);
-    toggleModalWindow(openedPopup);
+    const popupIsOpen = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(popupIsOpen);
   }
 });
 
 // Close Popup by Click Event
-document.addEventListener("click", function (evt) {
-  if (evt.target.closest(".popup")) {
-    const openedPopup = document.querySelector(`.${popupSelector}`);
-    toggleModalWindow(openedPopup);
+document.addEventListener("mousedown", function (evt) {
+  if (evt.target.matches(".popup")) {
+    const popupIsOpen = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(popupIsOpen);
   }
 });

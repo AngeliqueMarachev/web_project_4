@@ -1,7 +1,7 @@
-# Project 4: Around The U.S. Part 2
+# Project 4: Around The U.S. Part 3
 
 ### Overview
-Continuing to develop the project by adding form validatio  and including two new functions to remove the popup: 
+Continuing to develop the project by adding form validation and including two new functions to remove the popup: 
 1. an escape key function 
 2. a click function
 

@@ -146,7 +146,7 @@ function renderCard(card, wrapper) {
 
 
 ///////////
-// Event handlers
+// Event handlers //
 //////////
 
 openProfileModalButton.addEventListener("click", function () {

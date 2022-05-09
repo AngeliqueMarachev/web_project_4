@@ -1,16 +1,25 @@
-# Project 4: Around The U.S.
+# Project 4: Around The U.S. Part 3
 
 ### Overview
+Continuing to develop the project by adding form validation and including two new functions to remove the popup: 
+1. an escape key function 
+2. a click function
 
-* Figma
-* Images
 
 **Figma**
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+This project was designed according to brief provided on Figma. 
 
-**Images**
+## Responsive Layot 
+  
+This is a project by Angelique Marachev was created using HTML, CSS and JavaScript, based on the design brief on Figma and all the elements are displayed correctly on popular screen sizes - 1280 / 768 / 320.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+## Plan on improving the project
 
-Have fun with JavaScript!
+In the future, I plan on updating the information and images to create a 100% unique project for my portfolio.
+
+
+## Published link
+This project has been published at the following link: 
+
+https://angeliquemarachev.github.io/web_project_4/

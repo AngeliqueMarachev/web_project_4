@@ -24,7 +24,7 @@ const hasValidInput = (inputList) => {
   return inputList.every((inputEl) => inputEl.validity.valid);
 };
 
-const toggleButton = (inputList, button, settings) => {
+export const toggleButton = (inputList, button, settings) => {
   if (hasValidInput(inputList)) {
     button.disabled = false;
     button.classList.remove(settings.inactiveButtonClass);
@@ -44,6 +44,7 @@ const setEventListeners = (formEl, settings) => {
     });
   });
 };
+
 
 const enableValidation = (settings) => {
   const formList = [...document.querySelectorAll(settings.formSelector)];

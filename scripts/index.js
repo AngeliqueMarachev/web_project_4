@@ -29,6 +29,8 @@ const initialCards = [
   },
 ];
 
+import { toggleButton } from "./validate.js";
+
 // Modals
 const addCardModal = document.querySelector(".popup_type_add-card");
 const previewModal = document.querySelector(".popup_type_preview");
@@ -47,14 +49,15 @@ const previewModalCloseButton = document.querySelector(".popup__close_preview");
 const closeProfileModalButton = document.querySelector(".popup__close_profile");
 const openProfileModalButton = document.querySelector(".profile__edit-button");
 
+
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
 
 // Form Data
-const titleInputValue = editProfilePopup.querySelector(".popup__input_type_name");
-const descriptionInputValue = editProfilePopup.querySelector(".popup__input_type_occupation");
-const nameInputValue = document.querySelector(".popup__input_type_title");
-const linkInputValue = document.querySelector(".popup__input_type_link");
+const titleInput = editProfilePopup.querySelector(".popup__input_type_name");
+const descriptionInput = editProfilePopup.querySelector(".popup__input_type_occupation");
+const nameInput = document.querySelector(".popup__input_type_title");
+const linkInput = document.querySelector(".popup__input_type_link");
 
 // Wrappers
 const placesList = document.querySelector(".gallery__grid");
@@ -96,46 +99,44 @@ function createCardElement(card) {
   return cardElement;
 }
 
-// Profile Popup
-function openProfilePopup() {
-  profileName.textContent = titleInputValue.value;
-  profileOccupation.textContent = descriptionInputValue.value;
-  openProfilePopup(editProfilePopup);
-}
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = titleInputValue.value;
-  profileOccupation.textContent = descriptionInputValue.value;
-  toggleModalWindow(profileModal);
-}
-
 // Universal Popup
 function toggleModalWindow(modalWindow) {
   modalWindow.classList.toggle(popupSelector);
 }
+
+
+// Profile Popup Form
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = titleInput.value;
+  profileOccupation.textContent = descriptionInput.value;
+  toggleModalWindow(profileModal);
+}
+
 
 // Add New Card
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(
     {
-      name: nameInputValue.value,
-      link: linkInputValue.value,
+      name: nameInput.value,
+      link: linkInput.value,
     },
     placesList
   );
   toggleModalWindow(addCardModal);
 
   addCardPopup.reset();
+
 }
+
 
 // Open Image Popup
 function openImagePreview(card) {
   const popupImage = previewModal.querySelector(".popup__image");
   const popupTitle = previewModal.querySelector(".popup__text");
   popupImage.src = card.link;
-  popupImage.alt = nameInputValue;
+  popupImage.alt = nameInput;
   popupTitle.textContent = card.name;
   toggleModalWindow(previewModal);
 }
@@ -150,8 +151,8 @@ function renderCard(card, wrapper) {
 //////////
 
 openProfileModalButton.addEventListener("click", function () {
-  titleInputValue.value = profileName.textContent;
-  descriptionInputValue.value = profileOccupation.textContent;
+  titleInput.value = profileName.textContent;
+  descriptionInput.value = profileOccupation.textContent;
   toggleModalWindow(profileModal);
 });
 
@@ -178,15 +179,16 @@ initialCards.forEach((card) => renderCard(card, placesList));
 // Close Popup by Escape Key Event
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    const popupIsOpen = document.querySelector(`.${popupSelector}`);
-    toggleModalWindow(popupIsOpen);
+    const openedPopup = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(openedPopup);
   }
 });
 
 // Close Popup by Click Event
 document.addEventListener("mousedown", function (evt) {
   if (evt.target.matches(".popup")) {
-    const popupIsOpen = document.querySelector(`.${popupSelector}`);
-    toggleModalWindow(popupIsOpen);
+    const openedPopup = document.querySelector(`.${popupSelector}`);
+    toggleModalWindow(openedPopup);
   }
 });
+

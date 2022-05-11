@@ -29,7 +29,7 @@ const initialCards = [
   },
 ];
 
-import { disableButton } from "./validate.js";
+
 
 // Modals
 const addCardModal = document.querySelector(".popup_type_add-card");
@@ -49,7 +49,7 @@ const previewModalCloseButton = document.querySelector(".popup__close_preview");
 const closeProfileModalButton = document.querySelector(".popup__close_profile");
 const openProfileModalButton = document.querySelector(".profile__edit-button");
 
-const button = document.querySelector(".popup__button");
+import { toggleButton, enableButton, disableButton } from "./validate.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
@@ -62,7 +62,6 @@ const linkInput = document.querySelector(".popup__input_type_link");
 
 // Wrappers
 const placesList = document.querySelector(".gallery__grid");
-
 
 /////////////
 // Functions
@@ -78,6 +77,7 @@ function closePopup(modalWindow) {
   modalWindow.classList.remove(popupSelector);
   removeKeyDownListener();
 }
+
 
 // Profile Popup Form
 function handleProfileFormSubmit(evt) {
@@ -100,7 +100,6 @@ function handleCardFormSubmit(evt) {
   );
   closePopup(addCardModal);
   addCardPopup.reset();
-  // toggleButton(button);
   disableButton(button, settings);
 }
 
@@ -209,49 +208,4 @@ function createCardElement(card) {
 
   return cardElement;
 }
-
-
-// // DISABLE BUTTON ON OPEN
-
-// function disableButton(button, config) {
-//   button.classList.add(config.disableButtonClass)
-//   button.disabled = 'disabled'
-// }
-// disableButton();
-
-// function enableButton(button, config) {
-//   button.classList.remove(config.disableButtonClass)
-//   button.disabled = false
-// }
-// enableButton();
-
-
-// OR
-//   const inputList = [...document.querySelectorAll(".popup__input")];
-//   const inactiveButtonClass = ".popup__button_disabled";
-//   const newCardSubmitButton = document.querySelector(".popup__form.popup__button");
-// // const addButton = document.querySelector(".popup__button");
-
-// button.addEventListener("click", () => {
-//   openPopup(modalWindow);
-//   toggleButton(inputList, newCardSubmitButton, { inactiveButtonClass });
-// });
-
-
-// OR 
-// const formData = [...document.querySelectorAll(".popup__input")];
-// const disableButton = document.querySelector(".popup__button_disabled");
-
-
-// function stateHandle(disableButton) {
-//   if (formData.querySelector(popupSelector).value === "") {
-//     disableButton.classList.toggle(toggleButton);
-//   } 
-// }
-
-// disableButton.addEventListener("change", () =>
-//   stateHandle(disableButton)
-// ); 
-
-
 

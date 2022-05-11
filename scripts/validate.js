@@ -24,14 +24,33 @@ const hasValidInput = (inputList) => {
   return inputList.every((inputEl) => inputEl.validity.valid);
 };
 
-export const toggleButton = (inputList, button, settings) => {
-  if (hasValidInput(inputList)) {
-    button.disabled = false;
-    button.classList.remove(settings.inactiveButtonClass);
-  } else {
-    button.disabled = true;
-    button.classList.add(settings.inactiveButtonClass);
-  }
+// export const toggleButton = (inputList, button, settings) => {
+//   if (hasValidInput(inputList)) {
+//     button.disabled = false;
+//     button.classList.remove(settings.inactiveButtonClass);
+//   } else {
+//     button.disabled = true;
+//     button.classList.add(settings.inactiveButtonClass);
+//   }
+// };
+
+
+export const disableButton = (button, settings) => {
+  button.disabled = false;
+  button.classList.remove(settings.inactiveButtonClass);
+}
+
+const enableButton = (button, settings) => {
+   button.disabled = true;
+   button.classList.add(settings.inactiveButtonClass);
+}
+
+const toggleButton = (inputList, button, settings) => {
+ if (hasValidInput(inputList)) {
+   disableButton(button, settings)
+ } else {
+   enableButton(button, settings)
+ }
 };
 
 const setEventListeners = (formEl, settings) => {
@@ -40,11 +59,11 @@ const setEventListeners = (formEl, settings) => {
   inputList.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
       checkInputValidity(formEl, inputEl, settings);
-      toggleButton(inputList, submitButton, settings);
+      // toggleButton(inputList, submitButton, settings);
+      disableButton(inputList, submitButton, settings);
     });
   });
 };
-
 
 const enableValidation = (settings) => {
   const formList = [...document.querySelectorAll(settings.formSelector)];

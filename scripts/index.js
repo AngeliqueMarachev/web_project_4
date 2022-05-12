@@ -137,7 +137,6 @@ closeProfileModalButton.addEventListener("click", function () {
 addCardButton.addEventListener("click", () => {
   openPopup(addCardModal);
   disableButton(buttonInsideAddCardForm, settings);
-  form
 });
 
 addCardModalCloseButton.addEventListener("click", () =>

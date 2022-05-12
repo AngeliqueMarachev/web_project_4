@@ -20,37 +20,27 @@ const checkInputValidity = (formEl, inputEl, settings) => {
   }
 };
 
-const hasValidInput = (inputList) => {
+const isFormValid = (inputList) => {
   return inputList.every((inputEl) => inputEl.validity.valid);
 };
 
 export const disableButton = (button, settings) => {
-  button.disabled = false;
-  button.classList.remove(settings.inactiveButtonClass);
+  button.disabled = true;
+  button.classList.add(settings.inactiveButtonClass);
 }
 
 export const enableButton = (button, settings) => {
-   button.disabled = true;
-   button.classList.add(settings.inactiveButtonClass);
+   button.disabled = false;
+   button.classList.remove(settings.inactiveButtonClass);
 }
 
 export const toggleButton = (inputList, button, settings) => {
- if (hasValidInput(inputList)) {
-   disableButton(button, settings)
+  if (isFormValid(inputList)) {
+    enableButton(button, settings)
  } else {
-   enableButton(button, settings)
+  disableButton(button, settings)
  }
 };
-
-// const toggleButton = (inputList, button, settings) => {
-//   if (hasValidInput(inputList)) {
-//     button.disabled = false;
-//     button.classList.remove(settings.inactiveButtonClass);
-//   } else {
-//     button.disabled = true;
-//     button.classList.add(settings.inactiveButtonClass);
-//   }
-// };
 
 const setEventListeners = (formEl, settings) => {
   const inputList = [...formEl.querySelectorAll(settings.inputSelector)];
@@ -72,12 +62,14 @@ const enableValidation = (settings) => {
   });
 };
 
-
-enableValidation({
+export const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
-});
+}
+  
+  
+enableValidation(settings);

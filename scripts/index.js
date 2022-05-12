@@ -29,6 +29,7 @@ const initialCards = [
   },
 ];
 
+import { toggleButton, enableButton, disableButton, settings } from "./validate.js";
 
 
 // Modals
@@ -41,6 +42,7 @@ const addCardPopup = document.querySelector(".popup__form-create");
 const popupSelector = "popup_open";
 
 // Buttons
+const buttonInsideAddCardForm = addCardPopup.querySelector(".popup__button");
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModalCloseButton = document.querySelector(
   ".popup__close_add-card"
@@ -48,8 +50,6 @@ const addCardModalCloseButton = document.querySelector(
 const previewModalCloseButton = document.querySelector(".popup__close_preview");
 const closeProfileModalButton = document.querySelector(".popup__close_profile");
 const openProfileModalButton = document.querySelector(".profile__edit-button");
-
-import { toggleButton, enableButton, disableButton } from "./validate.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileOccupation = document.querySelector(".profile__occupation");
@@ -98,9 +98,9 @@ function handleCardFormSubmit(evt) {
     },
     placesList
   );
+  evt.preventDefault();
   closePopup(addCardModal);
   addCardPopup.reset();
-  disableButton(button, settings);
 }
 
 
@@ -134,8 +134,11 @@ closeProfileModalButton.addEventListener("click", function () {
   closePopup(profileModal);
 });
 
-addCardButton.addEventListener("click", () => openPopup(addCardModal));
-
+addCardButton.addEventListener("click", () => {
+  openPopup(addCardModal);
+  disableButton(buttonInsideAddCardForm, settings);
+  form
+});
 
 addCardModalCloseButton.addEventListener("click", () =>
   closePopup(addCardModal)
@@ -207,5 +210,6 @@ function createCardElement(card) {
   });
 
   return cardElement;
+
 }
 

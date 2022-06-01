@@ -6,13 +6,20 @@ export const popupTitle = previewModal.querySelector(".popup__text");
 // Universal Popup
 export const openPopup = (modalWindow) => {
   modalWindow.classList.add(popupSelector);
-  addKeyDownListener();
+  setEventListeners();
 };
 
 export const closePopup = (modalWindow) => {
   modalWindow.classList.remove(popupSelector);
-  removeKeyDownListener();
-  escEvent();
+  removeEventListeners();
+};
+
+// Close Popup by Click Event
+const overlayClickHandler = (evt) => {
+  if (evt.target.matches('.popup')) {
+    const openedPopup = document.querySelector(`.${popupSelector}`);
+    closePopup(openedPopup);
+  }
 };
 
 //Close Popup by Escape Event
@@ -23,20 +30,17 @@ const handleKeyDown = (evt) => {
   }
 };
 
-const addKeyDownListener = () => {
-  document.addEventListener("keydown", handleKeyDown);
+// Event Listeners
+  const setEventListeners = () => {
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('mousedown', overlayClickHandler);
 };
 
-const removeKeyDownListener = () => {
+const removeEventListeners = () => {
   document.removeEventListener("keydown", handleKeyDown);
+  document.removeEventListener('mousedown', overlayClickHandler);
 };
 
-// Close Popup by Click Event
-const escEvent = () => {
-  document.addEventListener("mousedown", (evt) => {
-    if (evt.target.matches(".popup")) {
-      const openedPopup = document.querySelector(`.${popupSelector}`);
-      closePopup(openedPopup);
-    }
-  });
-};
+
+
+

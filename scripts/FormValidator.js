@@ -2,9 +2,7 @@ export default class FormValidator {
   constructor(settings, formEl) {
     this._settings = settings;
     this._formEl = formEl;
-    this._inputList = Array.from(this._formEl.querySelectorAll(this._input)); // reviewer approved
-    //this._inputList = Array.from(this._formEl.querySelctorAll(settings.inputSelector)) // Liza's suggestion
-    //this._inputList = settings.inputSelector; 
+    this._inputList = Array.from(this._formEl.querySelectorAll(this._settings.inputSelector));
     this._submitButton = this._formEl.querySelector(
       this._settings.submitButtonSelector
     );  
@@ -59,7 +57,6 @@ export default class FormValidator {
 
   _setEventListeners = () => {
     const { inputSelector } = this._settings;
-    //this._inputList = Array.from(this._formEl.querySelectorAll(inputSelector)); // reviewer wants me to delete
     this._inputList.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);

@@ -80,14 +80,19 @@ const cardTemplateSelector = "#gallery-template";
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
 const validatePlaceForm = new FormValidator(settings, addCardPopup); 
 
-const formValidator = new FormValidator(settings, formEl);
-formValidator.enableValidation(settings, formEl);
+validateProfileForm.enableValidation();
+validatePlaceForm.enableValidation();
 
-validateProfileForm.enableValidation(settings, editProfilePopup);
-validatePlaceForm.enableValidation(settings, addCardPopup);
+validateProfileForm.disableButton();
+validatePlaceForm.disableButton()
+// const formValidator = new FormValidator(settings, formEl);
+// formValidator.enableValidation(settings, formEl);
 
-validateProfileForm.disableButton(settings, editProfilePopup);
-validatePlaceForm.disableButton(settings, addCardPopup);
+// validateProfileForm.enableValidation(settings, editProfilePopup);
+// validatePlaceForm.enableValidation(settings, addCardPopup);
+
+// validateProfileForm.disableButton(settings, editProfilePopup);
+// validatePlaceForm.disableButton(settings, addCardPopup);
 
 /////////////
 // Functions

@@ -50,9 +50,9 @@ export class Card {
       ".gallery__delete-button"
     );
 
-    this._cardImage.style.backgroundImage = `url(${this._link})`;
-    this._cardTitle.textContent = this._name;
+    this._cardImage.src = this._link;
     this._cardImage.alt = `${this._name}`;
+    this._cardTitle.textContent = this._name;
 
     this._addEventListeners();
 

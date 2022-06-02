@@ -15,10 +15,9 @@ export const closePopup = (modalWindow) => {
 };
 
 // Close Popup by Click Event
-const overlayClickHandler = (evt) => {
+const handleClickEvent = (evt) => {
   if (evt.target.matches('.popup')) {
-    const openedPopup = document.querySelector(`.${popupSelector}`);
-    closePopup(openedPopup);
+    closePopup(evt.target);
   }
 };
 
@@ -33,14 +32,10 @@ const handleKeyDown = (evt) => {
 // Event Listeners
   const setEventListeners = () => {
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener('mousedown', overlayClickHandler);
+    document.addEventListener('mousedown', handleClickEvent);
 };
 
 const removeEventListeners = () => {
   document.removeEventListener("keydown", handleKeyDown);
-  document.removeEventListener('mousedown', overlayClickHandler);
+  document.removeEventListener('mousedown', handleClickEvent);
 };
-
-
-
-

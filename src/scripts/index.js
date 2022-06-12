@@ -1,3 +1,4 @@
+import "../pages/index.css";
 import FormValidator from "./FormValidator.js";
 import { Card } from "./Card.js";
 import {
@@ -6,8 +7,20 @@ import {
   closePopup,
   popupImage,
   previewModal,
-  popupTitle,
+  popupTitle, 
 } from "./utils.js";
+
+// import logoSrc from "./images/lead.svg";
+
+// const logoImage = document.getElementById("logo");
+// logoImage.src = logoSrc;
+
+// import avatarSrc from "./images/Jacques_Cousteau.jpg";
+
+// const avatarImage = document.getElementById("avatar");
+// avatarImage.src = avatarSrc;
+
+
 
 const initialCards = [
   {
@@ -85,14 +98,7 @@ validatePlaceForm.enableValidation();
 
 validateProfileForm.disableButton();
 validatePlaceForm.disableButton()
-// const formValidator = new FormValidator(settings, formEl);
-// formValidator.enableValidation(settings, formEl);
 
-// validateProfileForm.enableValidation(settings, editProfilePopup);
-// validatePlaceForm.enableValidation(settings, addCardPopup);
-
-// validateProfileForm.disableButton(settings, editProfilePopup);
-// validatePlaceForm.disableButton(settings, addCardPopup);
 
 /////////////
 // Functions

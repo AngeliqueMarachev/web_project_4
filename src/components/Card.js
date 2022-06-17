@@ -1,10 +1,10 @@
-import { openPopup, popupTitle, popupImage, previewModal } from "./utils.js";
 
-export class Card {
-  constructor({ name, link }, cardTemplateSelector) {
+export default class Card {
+  constructor({ name, link }, cardTemplateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _toggleLikeButton = () => {
@@ -13,13 +13,6 @@ export class Card {
 
   _cardDeleteButton = () => {
     this._cardElement.remove();
-  };
-
-  _openImagePreview = () => {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupTitle.textContent = this._name;
-    openPopup(previewModal);
   };
 
   _addEventListeners = () => {
@@ -31,7 +24,7 @@ export class Card {
       this._cardElement.remove()
     );
 
-    this._cardImage.addEventListener("click", () => this._openImagePreview());
+    this._cardImage.addEventListener("click", () => this._handleCardClick(this._name, this._link));
   };
 
   createCardElement = () => {

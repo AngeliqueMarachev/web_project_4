@@ -1,7 +1,7 @@
 
 export default class Card {
-  constructor({ name, link }, cardTemplateSelector, handleCardClick) {
-    this._name = name;
+  constructor({ title, link }, cardTemplateSelector, handleCardClick) {
+    this._title = title;
     this._link = link;
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
@@ -25,7 +25,7 @@ export default class Card {
     );
 
     this._cardImage.addEventListener("click", () =>
-      this._handleCardClick(this._name, this._link));
+      this._handleCardClick(this._title, this._link));
   };
 
   createCardElement = () => {
@@ -45,8 +45,8 @@ export default class Card {
     );
 
     this._cardImage.src = this._link;
-    this._cardImage.alt = `${this._name}`;
-    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = `${this._title}`;
+    this._cardTitle.textContent = this._title;
 
     this._addEventListeners();
 

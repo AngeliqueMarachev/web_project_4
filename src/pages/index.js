@@ -72,8 +72,8 @@ imagePreviewPopup.setEventListeners();
 
 // Create Card
 const renderCard = (data) => {
-  const cardElement = new Card(data, cardTemplateSelector, (name, link) => {
-    imagePreviewPopup.open(name, link);
+  const cardElement = new Card(data, cardTemplateSelector, (title, link) => {
+    imagePreviewPopup.open(title, link);
   });
   section.addItem(cardElement.createCardElement());
 };

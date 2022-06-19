@@ -13,31 +13,12 @@ import {
   openProfileModalButton,
   editProfilePopup,
   addCardButton,
-  placesList,
   cardTemplateSelector,
   addCardPopup,
-
   titleInput,
   descriptionInput,
-  profileModal,
-  closeProfileModalButton,
-  popupSelector,
-  openPopup,
-  closePopup,
-  popupImage,
-  previewModal,
-  popupTitle,
+
 } from "../utils/constants.js";
-
-// DELETE ?
-const addCardModal = document.querySelector(".popup_type_add-card");
-const formEl = document.querySelector(".popup__form");
-const buttonInsideAddCardForm = addCardPopup.querySelector(".popup__button");
-const previewModalCloseButton = document.querySelector(".popup__close_preview");
-const addCardModalCloseButton = document.querySelector(
-  ".popup__close_add-card"
-);
-
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -79,14 +60,14 @@ const renderCard = (data) => {
 };
 
 
-// Initialize UserInfo
+// UserInfo
 const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
   userOccupationSelector: ".profile__occupation",
 });
 
 
-// Initialise Places Container
+// Places Container
 const section = new Section(
   {
     items: initialCards,
@@ -108,8 +89,3 @@ openProfileModalButton.addEventListener("click", () => {
 addCardButton.addEventListener("click", () => {
   placesPopupForm.open();
 });
-
-
-
-
-

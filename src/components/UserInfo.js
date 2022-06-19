@@ -19,4 +19,3 @@ export default class UserInfo {
       this._profileOccupation.textContent = occupation;
     }
   }
-

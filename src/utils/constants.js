@@ -48,21 +48,8 @@ export const closeProfileModalButton = document.querySelector(".popup__close_pro
 export const placesList = document.querySelector(".gallery__grid");
 export const cardTemplateSelector = "#gallery-template";
 
-// from utils 
 export const popupSelector = "popup_open";
 export const previewModal = document.querySelector(".popup_type_preview");
 export const popupImage = previewModal.querySelector(".popup__image");
 export const popupTitle = previewModal.querySelector(".popup__text");
-
-
-// Universal Popup
-export const openPopup = (modalWindow) => {
-  modalWindow.classList.add(popupSelector);
-  setEventListeners();
-};
-
-export const closePopup = (modalWindow) => {
-  modalWindow.classList.remove(popupSelector);
-  removeEventListeners();
-};
 

@@ -10,9 +10,9 @@ export default class Card {
     this._cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
   };
 
-  _deleteCard = () => {
+  _deleteCardButton = () => {
+    this._cardElement.remove();
     this._cardElement = null; // removes from the link to the DOM
-    
   };
 
   _addEventListeners = () => {
@@ -20,7 +20,7 @@ export default class Card {
       this._toggleLikeButton()
     );
     
-    this._deleteCard.addEventListener("click", () =>
+    this._deleteCardButton.addEventListener("click", () =>
       this._cardElement.remove()
     );
 
@@ -40,7 +40,7 @@ export default class Card {
     this._cardLikeButton = this._cardElement.querySelector(
       ".gallery__heart-icon"
     );
-    this._deleteCard = this._cardElement.querySelector(
+    this._deleteCardButton = this._cardElement.querySelector(
       ".gallery__delete-button"
     );
 

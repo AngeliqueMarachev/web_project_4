@@ -10,9 +10,9 @@ export default class Card {
     this._cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
   };
 
-  _deleteCardButton = () => {
+  _deleteCard = () => {
     this._cardElement.remove();
-    this._cardElement = null; // removes from the link to the DOM
+    this._cardElement = null;
   };
 
   _addEventListeners = () => {
@@ -21,7 +21,7 @@ export default class Card {
     );
     
     this._deleteCardButton.addEventListener("click", () =>
-      this._cardElement.remove()
+    this._deleteCard()
     );
 
     this._cardImage.addEventListener("click", () =>

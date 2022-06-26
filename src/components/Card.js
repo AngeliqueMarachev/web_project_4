@@ -11,7 +11,9 @@ export default class Card {
   };
 
   _cardDeleteButton = () => {
-    this._cardElement.remove();
+    // this._cardElement.remove();
+    this._cardElement = null; // removes from the link to the DOM
+    
   };
 
   _addEventListeners = () => {
@@ -28,11 +30,11 @@ export default class Card {
   };
 
   createCardElement = () => {
-    this._cardTemplate = document
-      .querySelector("#gallery-template")
+    const cardTemplate = document
+      .querySelector(this._cardTemplateSelector)
       .content.querySelector(".gallery__card");
       
-    this._cardElement = this._cardTemplate.cloneNode(true);
+    this._cardElement = cardTemplate.cloneNode(true);
 
     this._cardImage = this._cardElement.querySelector(".gallery__item");
     this._cardTitle = this._cardElement.querySelector(".gallery__text");

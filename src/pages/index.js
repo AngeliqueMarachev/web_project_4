@@ -55,6 +55,7 @@ imagePreviewPopup.setEventListeners();
 const renderCard = (data) => {
   const cardElement = new Card(data, cardTemplateSelector, (title, link) => {
     imagePreviewPopup.open(title, link);
+
   });
   section.addItem(cardElement.createCardElement());
 };

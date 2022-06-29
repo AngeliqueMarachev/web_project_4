@@ -6,19 +6,25 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
+import { api } from "../utils/Api.js";
 
 import {
   initialCards,
   settings,
   openProfileModalButton,
-  editProfilePopup,
+  editProfilePopup, 
   addCardButton,
   cardTemplateSelector,
   addCardPopup,
   titleInput,
-  descriptionInput,
-
+  descriptionInput
 } from "../utils/constants.js";
+
+
+api.getInitialCards().then(res => {
+    section.renderItems(res);
+  console.log('res', res)
+})
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -53,7 +59,8 @@ imagePreviewPopup.setEventListeners();
 
 // Create Card
 const renderCard = (data) => {
-  const cardElement = new Card(data, cardTemplateSelector, (title, link) => {
+  const cardElement = new Card
+    (data, cardTemplateSelector, (title, link) => {
     imagePreviewPopup.open(title, link);
 
   });
@@ -69,14 +76,13 @@ const userInfo = new UserInfo({
 
 
 // Places Container
-const section = new Section(
-  {
-    items: initialCards,
+const section = new Section({
+    // items: initialCards,
     renderer: (data) => renderCard(data),
   },
   ".gallery__grid"
 );
-section.renderItems();
+// section.renderItems();
 
 
 // Event Listeners

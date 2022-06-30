@@ -2,17 +2,47 @@ class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl;
         this._headers = headers;
-    }
+    };
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText))
-          .catch(err => console.log(err));
-          }
-      }
+           .catch(console.log);
+    }
     
-  
+    getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers
+    })
+        .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+        .catch(console.log);
+    }
+    
+    createCard(data) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(data)
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+            .catch(console.log);
+    }
+
+    editProfile({ name, about }) {
+        return fetch(`${this._baseUrl}/users/me`, {
+                method: "PATCH",
+                headers: this._headers,
+                body: JSON.stringify({
+                  name,
+                  about,
+                })
+        }).then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+          .catch(console.log);
+    }
+};
+
+
     // other methods for working with the API
   
   

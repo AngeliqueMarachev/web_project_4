@@ -9,13 +9,13 @@ export default class UserInfo {
   
     getUserInfo() {
       return {
-        name: this._profileName.textContent,
+        user: this._profileName.textContent,
         occupation: this._profileOccupation.textContent,
       };
     }
   
-    setUserInfo(name, occupation) {
-      this._profileName.textContent = name;
+  setUserInfo({ user, occupation }) {
+      this._profileName.textContent = user;
       this._profileOccupation.textContent = occupation;
     }
-  }
+};

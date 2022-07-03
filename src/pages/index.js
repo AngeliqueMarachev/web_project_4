@@ -20,20 +20,38 @@ import {
   descriptionInput,
 } from "../utils/constants.js";
 
-api
-  .getInitialCards()
-  .then((res) => {
-    section.renderItems(res);
-  })
-  .catch(console.log);
+let userId;
 
-// api.getUserInfo()
-//   .then(res => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userId = userData._id
+    userInfo.setUserInfo({user: userData.name, occupation: userData.about}) // could I just write userData?
+    section.renderItems(initialCards);
+  
+  })
+  // .catch(console.log);
+  
+
+//   api.getUserInfo()
+//     .then(res => {
+//     userId = res._id
 //     userInfo.setUserInfo({
 //       user: res.name, occupation: res.about
 //     });
 //   })
-// .catch(console.log)
+//   .catch(console.log)
+
+// api.getInitialCards()
+//   .then((res) => {
+//     section.renderItems(res);
+//   })
+//   .catch(console.log);
+
+
+    
+
+
+
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -52,47 +70,77 @@ const userInfo = new UserInfo({
 
 // Create Card
 const renderCard = (data) => {
-  const cardElement = new Card(data, cardTemplateSelector, (name, link) => {
-    imagePreviewPopup.open(name, link);
-  });
+  const cardElement = new Card(
+    data,
+    userId,
+    cardTemplateSelector,
+    (name, link) => {
+      imagePreviewPopup.open(name, link);
+    },
+    () => {
+      if(cardElement.isLiked()) {
+        api.removeLike(cardElement.getId())
+          .then(res => {
+            cardElement.setLikes(res.likes)
+          })
+      } else {
+        api.likeCard(cardElement.getId())
+          .then(res => {
+            cardElement.setLikes(res.likes)
+          })
+      }
+    }
+  );
   section.addItem(cardElement.createCardElement());
 };
 
-
-
-// // Places Container 
+// // Places Container
 const section = new Section(
   {
-    renderer: (data) => renderCard(data),
+    renderer: renderCard,
+    // renderer: (data) => renderCard(data),
   },
   ".gallery__grid"
 );
 
 
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
-imagePreviewPopup.setEventListeners();
+
 
 // Popups
 const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
-  api.editProfile(data)
-    .then(() => {
-      userInfo.getUserInfo();
-      userInfo.setUserInfo(data.name, data.about);
+  api
+    .editProfile({ name: data.user, about: data.occupation })
+    .then((res) => {
+
+      userInfo.setUserInfo(
+        { user: res.name, occupation: res.about },
+      );
     })
     .catch(console.log)
     .finally(() => {
       profilePopupForm.close();
-    })
+    });
 });
-profilePopupForm.setEventListeners();
 
 
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
-  renderCard(data);
+  api.addCard({ name: data.name , link: data.link })
+    .then(res => {
+      renderCard(
+        {
+          name: data.name,
+          link: data.link,
+        }
+      );
+    })
+  
+  .catch(console.log);
+  
   validatePlaceForm.resetValidation();
   placesPopupForm.close();
 });
-placesPopupForm.setEventListeners();
+
 
 
 openProfileModalButton.addEventListener("click", () => {
@@ -106,3 +154,7 @@ addCardButton.addEventListener("click", () => {
   placesPopupForm.open();
 });
 
+
+profilePopupForm.setEventListeners();
+placesPopupForm.setEventListeners();
+imagePreviewPopup.setEventListeners();

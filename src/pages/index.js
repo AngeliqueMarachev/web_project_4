@@ -18,39 +18,26 @@ import {
   addCardPopup,
   titleInput,
   descriptionInput,
-  // addAvatarPopup,
-  // avatar
+  addAvatarPopup,
+  avatar
 } from "../utils/constants.js";
-
-const addAvatarPopup = document.querySelector(".popup_type_avatar-change");
-const avatar = document.querySelector(".profile__avatar");
 
 let userId;
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([userData, initialCards]) => {
-    userId = userData._id
-    userInfo.setUserInfo({user: userData.name, occupation: userData.about}) // could I just write userData?
+// UserInfo
+const userInfo = new UserInfo({
+  userNameSelector: ".profile__name",
+  userOccupationSelector: ".profile__occupation",
+  userAvatarSelector: ".profile__avatar",
+});
+
+Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
+  ([userData, initialCards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
     section.renderItems(initialCards);
-  
-  })
-  // .catch(console.log);
-  
-
-//   api.getUserInfo()
-//     .then(res => {
-//     userId = res._id
-//     userInfo.setUserInfo({
-//       user: res.name, occupation: res.about
-//     });
-//   })
-//   .catch(console.log)
-
-// api.getInitialCards()
-//   .then((res) => {
-//     section.renderItems(res);
-//   })
-//   .catch(console.log);
+  }
+);
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -65,12 +52,7 @@ const validateAvatarForm = new FormValidator(settings, addAvatarPopup);
 validateAvatarForm.enableValidation();
 validateAvatarForm.disableButton();
 
-// UserInfo
-const userInfo = new UserInfo({
-  userNameSelector: ".profile__name",
-  userOccupationSelector: ".profile__occupation",
-  userAvatarSelector: ".profile__avatar",
-});
+
 
 // Create Card
 const renderCard = (data) => {
@@ -82,16 +64,14 @@ const renderCard = (data) => {
       imagePreviewPopup.open(name, link);
     },
     () => {
-      if(cardElement.isLiked()) {
-        api.removeLike(cardElement.getId())
-          .then(res => {
-            cardElement.setLikes(res.likes)
-          })
+      if (cardElement.isLiked()) {
+        api.removeLike(cardElement.getId()).then((res) => {
+          cardElement.setLikes(res.likes);
+        });
       } else {
-        api.likeCard(cardElement.getId())
-          .then(res => {
-            cardElement.setLikes(res.likes)
-          })
+        api.likeCard(cardElement.getId()).then((res) => {
+          cardElement.setLikes(res.likes);
+        });
       }
     }
   );
@@ -109,23 +89,19 @@ const section = new Section(
 
 const handleAvatarSubmit = (data) => {
   api.editAvatar(data.link)
-    .then(res => {
-    userInfo.serUserInfo(res)
-  })
-}
-
-const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
-
+    .then((res) => {
+    userInfo.setUserInfo(res);
+  });
+};
 
 // Popups
+const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
+
 const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
   api
     .editProfile({ name: data.user, about: data.occupation })
     .then((res) => {
-
-      userInfo.setUserInfo(
-        { user: res.name, occupation: res.about },
-      );
+      userInfo.setUserInfo({ user: res.name, occupation: res.about });
     })
     .catch(console.log)
     .finally(() => {
@@ -133,27 +109,23 @@ const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
     });
 });
 
-
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
-  api.addCard({ name: data.name , link: data.link })
-    .then(res => {
-      renderCard(
-        {
-          name: data.name,
-          link: data.link,
-        }
-      );
+  api
+    .addCard({ name: data.name, link: data.link })
+    .then((res) => {
+      renderCard(res);
     })
-  .catch(console.log);
-  
+    .catch(console.log);
+
   validatePlaceForm.resetValidation();
   placesPopupForm.close();
 });
 
-const avatarChangePopup = new PopupWithForm({
-  popupSelector: ".popup_type_avatar-change",
-  handleFormSubmit: () => { }
-});
+const avatarChangePopup = new PopupWithForm(
+  ".popup_type_avatar-change",
+  handleAvatarSubmit
+);
+
 
 
 openProfileModalButton.addEventListener("click", () => {
@@ -169,7 +141,7 @@ addCardButton.addEventListener("click", () => {
 
 avatar.addEventListener("click", () => {
   avatarChangePopup.open();
-})
+});
 
 profilePopupForm.setEventListeners();
 placesPopupForm.setEventListeners();

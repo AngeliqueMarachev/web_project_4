@@ -53,5 +53,5 @@ export const previewModal = document.querySelector(".popup_type_preview");
 export const popupImage = previewModal.querySelector(".popup__image");
 export const popupTitle = previewModal.querySelector(".popup__text");
 
-
-
+export const addAvatarPopup = document.querySelector(".popup_type_avatar-change");
+export const avatar = document.querySelector(".profile__avatar");

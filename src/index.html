@@ -161,7 +161,7 @@
               id="add-avatar"
               type="text"
               minlength="1"
-              maxlength="30"
+              maxlength=""
               name="avatar"
               placeholder="Picture"
               required
@@ -170,6 +170,28 @@
           </label>
           <button type="submit" class="popup__button popup__button_disabled">
             Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+     <!-- DELETE POPUP -->
+    <div class="popup popup_type_confirm-delete">
+      <div class="popup__content">
+        <h2 class="popup__title">Are you sure?</h2>
+        <button
+          type="button"
+          aria-label="close button"
+          class="popup__close popup__close_delete-confirm"
+        ></button>
+
+        <form
+          class="popup__form popup__form-confirm"
+          name="delete-confirm"
+          novalidate
+        >
+          <button type="submit" class="popup__button popup__button_disabled">
+            Yes
           </button>
         </form>
       </div>

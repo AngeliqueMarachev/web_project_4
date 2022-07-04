@@ -3,13 +3,14 @@ export default class UserInfo {
     this._profileName = document.querySelector(userNameSelector);
     this._profileOccupation = document.querySelector(userOccupationSelector);
     // this._avatarElement = document.querySelector(".profile__avatar");
-    this._avatarElement = document.querySelector(userAvatarSelector);
+    this._avatarElement = document.querySelector(`${userAvatarSelector}`);
   }
 
   getUserInfo() {
     return {
       user: this._profileName.textContent,
       occupation: this._profileOccupation.textContent,
+      avatar: this._avatarElement.src,
     };
   }
 

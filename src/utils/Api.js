@@ -8,7 +8,6 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-        //    .catch(console.log);
     }
     
     getUserInfo() {
@@ -16,7 +15,6 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-        // .catch(console.log);
     }
 
     editProfile({ name, about }) {
@@ -28,14 +26,12 @@ class Api {
                 about,
             })
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-        //   .catch(console.log);
     }
 
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-        //   .catch(console.log);
     }
 
     addCard({ name, link }) {
@@ -48,30 +44,27 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-            // .catch(console.log);
     }
 
-     likeCard(id) {
-         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+     likeCard(cardId) {
+         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
              method: 'PUT',
              headers: this._headers,
          }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-        // .catch(console.log);
      }
     
-     removeLike(id) {
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+     removeLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: this._headers,
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
-       // .catch(console.log);
     }
     
-     updateAvatar({ avatar }) {
-        return fetch(`${this._baseUrl}/users/me.avatar`, {
+     editAvatar({ avatar }) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: 'PATCH',
-          headers: thi._headers,
-          body: JSON.stringify({ avatar: avatar }),
+          headers: this._headers,
+          body: JSON.stringify({ avatar }),
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
      }
     

@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, cardTemplateSelector, userId, handleCardClick, toggleLikeButton) {
+  constructor(data, cardTemplateSelector, userId, handleCardClick, handleLikeIcon ) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -8,6 +8,7 @@ export default class Card {
 
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleLikeIcon = handleLikeIcon;
 
     // this._toggleLikeButton = toggleLikeButton;
   }
@@ -16,19 +17,21 @@ export default class Card {
     return this._id;
   };
 
-  // _toggleLikeButton = () => {
-  //   this._cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
-  // };
 
   _deleteCard = () => {
     this._cardElement.remove();
     this._cardElement = null;
   };
 
+  // _toggleLikeButton = () => {
+  //   this._cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
+  // };
+
   _addEventListeners = () => {
     this._cardLikeButton.addEventListener("click", () =>
-      this._toggleLikeButton()
-    );
+      //  this._toggleLikeButton()
+      this._handleLikeIcon()
+    )
 
     this._deleteCardButton.addEventListener("click", () => this._deleteCard());
 
@@ -58,16 +61,8 @@ export default class Card {
   }
 
   isLiked() {
-    return this._likes.find(user => user.id === this._userId);
+    return this._likes.find(user => user._id === this._userId);
   }
-
-  // _getTemplate() {
-  //   const cardTemplate = document.querySelector(this._cardTemplateSelector)
-  //     .content.querySelector(".gallery__card")
-  //     .cloneNode(true);
-  //   return cardTemplate
-  // }
- 
 
   createCardElement = () => {
     const cardTemplate = document

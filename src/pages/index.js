@@ -18,7 +18,12 @@ import {
   addCardPopup,
   titleInput,
   descriptionInput,
+  // addAvatarPopup,
+  // avatar
 } from "../utils/constants.js";
+
+const addAvatarPopup = document.querySelector(".popup_type_avatar-change");
+const avatar = document.querySelector(".profile__avatar");
 
 let userId;
 
@@ -47,12 +52,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 //   })
 //   .catch(console.log);
 
-
-    
-
-
-
-
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
 validateProfileForm.enableValidation();
@@ -62,18 +61,23 @@ const validatePlaceForm = new FormValidator(settings, addCardPopup);
 validatePlaceForm.enableValidation();
 validatePlaceForm.disableButton();
 
+const validateAvatarForm = new FormValidator(settings, addAvatarPopup);
+validateAvatarForm.enableValidation();
+validateAvatarForm.disableButton();
+
 // UserInfo
 const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
   userOccupationSelector: ".profile__occupation",
+  userAvatarSelector: ".profile__avatar",
 });
 
 // Create Card
 const renderCard = (data) => {
   const cardElement = new Card(
     data,
-    userId,
     cardTemplateSelector,
+    userId,
     (name, link) => {
       imagePreviewPopup.open(name, link);
     },
@@ -103,6 +107,12 @@ const section = new Section(
   ".gallery__grid"
 );
 
+const handleAvatarSubmit = (data) => {
+  api.editAvatar(data.link)
+    .then(res => {
+    userInfo.serUserInfo(res)
+  })
+}
 
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
 
@@ -134,13 +144,16 @@ const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
         }
       );
     })
-  
   .catch(console.log);
   
   validatePlaceForm.resetValidation();
   placesPopupForm.close();
 });
 
+const avatarChangePopup = new PopupWithForm({
+  popupSelector: ".popup_type_avatar-change",
+  handleFormSubmit: () => { }
+});
 
 
 openProfileModalButton.addEventListener("click", () => {
@@ -154,7 +167,11 @@ addCardButton.addEventListener("click", () => {
   placesPopupForm.open();
 });
 
+avatar.addEventListener("click", () => {
+  avatarChangePopup.open();
+})
 
 profilePopupForm.setEventListeners();
 placesPopupForm.setEventListeners();
 imagePreviewPopup.setEventListeners();
+avatarChangePopup.setEventListeners();

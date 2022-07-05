@@ -38,6 +38,7 @@ export const editProfilePopup = document.querySelector(".popup__form-edit");
 export const addCardButton = document.querySelector(".profile__add-button");
 export const profileName = document.querySelector(".profile__name");
 export const profileOccupation = document.querySelector(".profile__occupation");
+export const avatar = document.querySelector(".profile__avatar");
 export const titleInput = editProfilePopup.querySelector(".popup__input_type_name");
 export const descriptionInput = editProfilePopup.querySelector(
   ".popup__input_type_occupation"
@@ -54,4 +55,10 @@ export const popupImage = previewModal.querySelector(".popup__image");
 export const popupTitle = previewModal.querySelector(".popup__text");
 
 export const addAvatarPopup = document.querySelector(".popup_type_avatar-change");
-export const avatar = document.querySelector(".profile__avatar");
+
+export const logoImg = document.getElementById(".logo");
+
+export const setImageSource = function (imageElement, source) {
+  imageElement.src = source;
+}
+

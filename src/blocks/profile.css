@@ -20,6 +20,14 @@
   border-radius: 60px;
 }
 
+.profile__avatar:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  background-image: url(../images/update_avatar.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .profile__info {
   display: grid;
   grid-template-columns: minmax(auto, 373px) auto;

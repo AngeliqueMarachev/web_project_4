@@ -2,10 +2,13 @@ export default class FormValidator {
   constructor(settings, formEl) {
     this._settings = settings;
     this._formEl = formEl;
-    this._inputList = Array.from(this._formEl.querySelectorAll(this._settings.inputSelector));
+    this._inputList = Array.from(
+      this._formEl.querySelectorAll(this._settings.inputSelector)
+    );
+    
     this._submitButton = this._formEl.querySelector(
       this._settings.submitButtonSelector
-    );  
+    );
   }
 
   _showInputError = (inputEl, errorMessage) => {
@@ -52,7 +55,7 @@ export default class FormValidator {
   };
 
   _isFormValid = () => {
-    return  this._inputList.every((inputEl) => inputEl.validity.valid);
+    return this._inputList.every((inputEl) => inputEl.validity.valid);
   };
 
   _setEventListeners = () => {

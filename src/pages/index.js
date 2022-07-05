@@ -19,8 +19,11 @@ import {
   titleInput,
   descriptionInput,
   addAvatarPopup,
-  avatar
+  avatar,
+  setImageSource
 } from "../utils/constants.js";
+
+  // setImageSource(logoImg, logoSrc);
 
 let userId;
 
@@ -31,9 +34,10 @@ const userInfo = new UserInfo({
   userAvatarSelector: ".profile__avatar",
 });
 
-Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-  ([userData, initialCards]) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
     userId = userData._id;
+
     userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
     section.renderItems(initialCards);
   }
@@ -53,7 +57,8 @@ validateAvatarForm.enableValidation();
 validateAvatarForm.disableButton();
 
 
-
+// handleDeleteClick: () => { deleteCardPopup.open() },
+  
 // Create Card
 const renderCard = (data) => {
   const cardElement = new Card(
@@ -82,17 +87,22 @@ const renderCard = (data) => {
 const section = new Section(
   {
     renderer: renderCard,
-    // renderer: (data) => renderCard(data),
   },
   ".gallery__grid"
 );
 
-const handleAvatarSubmit = (data) => {
-  api.editAvatar(data.link)
-    .then((res) => {
-    userInfo.setUserInfo(res);
-  });
-};
+// const handleAvatarSubmit = (avatar) => {
+//     // api.editAvatar(data.link)
+//   api.editAvatar(avatar)
+//     .then((res) => {
+//       userInfo.setUserInfo(res);
+//     })
+//     .catch(console.log)
+//   //   .finally(() => {
+//   //     handleAvatarSubmit.close();
+//   // })
+// }
+  
 
 // Popups
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
@@ -121,12 +131,24 @@ const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
   placesPopupForm.close();
 });
 
-const avatarChangePopup = new PopupWithForm(
-  ".popup_type_avatar-change",
-  handleAvatarSubmit
-);
+// const avatarChangePopup = new PopupWithForm(
+//   ".popup_type_avatar-change",
+//   handleAvatarSubmit
+// );
 
+const avatarChangePopup = new PopupWithForm(".popup_type_avatar-change", (avatar) => {
+  api.editAvatar(avatar)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar)
+      avatarChangePopup.close()
+    }) 
+    .catch(console.log);
+});
 
+// const deleteCardPopup = new PopupWithForm(
+//   ".popup_type_confirm-delete",
+//   handleAvatarSubmit
+// );
 
 openProfileModalButton.addEventListener("click", () => {
   profilePopupForm.open();
@@ -147,3 +169,4 @@ profilePopupForm.setEventListeners();
 placesPopupForm.setEventListeners();
 imagePreviewPopup.setEventListeners();
 avatarChangePopup.setEventListeners();
+// deleteCardPopup.setEventListeners();

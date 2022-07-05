@@ -1,8 +1,9 @@
+import { avatar } from "../utils/constants";
+
 export default class UserInfo {
   constructor({ userNameSelector, userOccupationSelector, userAvatarSelector }) {
     this._profileName = document.querySelector(userNameSelector);
     this._profileOccupation = document.querySelector(userOccupationSelector);
-    // this._avatarElement = document.querySelector(".profile__avatar");
     this._avatarElement = document.querySelector(`${userAvatarSelector}`);
   }
 
@@ -15,8 +16,18 @@ export default class UserInfo {
   }
 
   setUserInfo({ user, occupation, avatar }) {
-    this._profileName.textContent = user;
-    this._profileOccupation.textContent = occupation;
-    this._avatarElement.src = `url(${avatar})`;
+    // this._profileName.textContent = user;
+    // this._profileOccupation.textContent = occupation;
+    // this._avatarElement.src = `url(${avatar})`;
+
+    this._profileName.textContent = user || this._name;;
+    this._profileOccupation.textContent = occupation || this._occupation;;
+    // this._avatar = avatar || this._avatar;
+  }
+
+  setUserAvatar(avatar) {
+    // this._avatarElement.src = `url(${avatar})`
+      this._avatarElement.src = `url(${avatar})` || this._avatar;
   }
 }
+

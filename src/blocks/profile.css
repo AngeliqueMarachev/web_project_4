@@ -23,10 +23,16 @@
 .profile__avatar:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.profile__avatar-hover {
   background-image: url(../images/update_avatar.svg);
   background-repeat: no-repeat;
   background-position: center;
+  /* display: flex; */
+  visibility: visible;
 }
+
 
 .profile__info {
   display: grid;

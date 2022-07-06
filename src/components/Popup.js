@@ -27,7 +27,6 @@ export default class Popup {
         document.removeEventListener("mousedown", this._handleOverlayClose);
     }
 
-  
     setEventListeners() {
       const popupClose = this._popupElement.querySelector(".popup__close");
       popupClose.addEventListener("mousedown", () => {

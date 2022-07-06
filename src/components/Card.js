@@ -10,8 +10,6 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleLikeIcon = handleLikeIcon;
     this._handleDeleteClick = handleDeleteClick;
-
-    // this._toggleLikeButton = toggleLikeButton;
   }
 
   getId() {
@@ -19,23 +17,19 @@ export default class Card {
   };
 
 
-  // _deleteCard = () => {
-  //   this._cardElement.remove();
-  //   this._cardElement = null;
-  // };
+  removeCard = () => {
+    this._cardElement.remove();
+    this._cardElement = null;
+  };
 
-  // _toggleLikeButton = () => {
-  //   this._cardLikeButton.classList.toggle("gallery__heart-icon_clicked");
-  // };
 
   _addEventListeners = () => {
     this._cardLikeButton.addEventListener("click", () =>
-      //  this._toggleLikeButton()
       this._handleLikeIcon()
     )
 
-    // this._deleteCardButton.addEventListener("click", () => this._deleteCard());
-    this._deleteCardButton.addEventListener("click", () => this._handleDeleteClick());
+    this._deleteCardButton.addEventListener("click", () => this.removeCard());
+    // this._deleteCardButton.addEventListener("click", () => this._handleDeleteClick());
 
 
     this._cardImage.addEventListener("click", () =>

@@ -37,14 +37,18 @@ const userInfo = new UserInfo({
 
 const confirmDeletePopup = new PopupWithSubmit({
   popupSelector: ".popup_type_confirm-delete",
+
   handleFormSubmit: (cardElement, cardId) => {
+    // console.log(cardId)
     api
       .deleteCard(cardId)
       .then(() => {
         cardElement.remove();
+      })
+    .catch(console.log)
+      .finally(() => {
         confirmDeletePopup.close();
       })
-      .catch(console.log);
   },
 });
 
@@ -53,11 +57,35 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userId = userData._id;
 
     userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
-    section.renderItems(initialCards);
     userInfo.setUserAvatar(userData.avatar);
+    section.renderItems(initialCards);
   })
   .then(() => userInfo.setAvatarVisible())
   .catch(console.log);
+
+  // NEW
+  const handleCardClick = (data) => {
+    imagePreviewPopup.open(data);
+  }
+
+  // NEW
+  const handleLikeIcon = (cardElement) => {
+    if(cardElement.isLiked()) {
+      api.removeLike(cardElement.getId())
+        .then(updatedCard => {
+          cardElement.setLikeCounter(updatedCard.likes)
+      })
+    } else {
+      api.addLike(cardElement.getId())
+        .then(updatedCard => {
+          cardElement.setLikeCounter(updatedCard.likes)
+      })
+    }
+  }
+
+  const handleDeleteClick = (card) => {
+    confirmDeletePopup.open()
+  }
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -71,7 +99,7 @@ validatePlaceForm.disableButton();
 const validateAvatarForm = new FormValidator(settings, addAvatarPopup);
 validateAvatarForm.enableValidation();
 validateAvatarForm.disableButton();
-
+   
 
 // Create Card
 const renderCard = (data) => {
@@ -82,12 +110,13 @@ const renderCard = (data) => {
     (name, link) => {
       imagePreviewPopup.open(name, link);
     },
-     () => {
-      confirmDeletePopup.open();
 
+    () => {
+      confirmDeletePopup.open();
+       
       confirmDeletePopup: () => {
-        api.deleteCard(cardId)
-        then((res) => {
+        api.deleteCard()
+        then(() => {
           cardElement.deleteCard()
         })
         then(() => {
@@ -95,28 +124,26 @@ const renderCard = (data) => {
         })
           .catch(console.log);
       };
-  },
+    },
     
-     () => {
+    () => {
       if (cardElement.isLiked()) {
-        api.removeLike(cardElement.getId()).then((res) => {
-          cardElement.setLikes(res.likes);
-        })
+        api.removeLike(cardElement.getId())
+          .then((res) => {
+            cardElement.setLikes(res.likes);
+          })
           .catch(console.log);
         
       } else {
-        api.likeCard(cardElement.getId()).then((res) => {
-          cardElement.setLikes(res.likes);
-        })
-        .catch(console.log);
+        api.likeCard(cardElement.getId())
+          .then((res) => {
+            cardElement.setLikes(res.likes);
+          })
+          .catch(console.log);
       }
-    }
-  )
-  userId;
+    });
   section.addItem(cardElement.createCardElement());
 };
-
-
 
 // // Places Container
 const section = new Section(
@@ -125,18 +152,6 @@ const section = new Section(
   },
   ".gallery__grid"
 );
-
-// const handleAvatarSubmit = (avatar) => {
-//     // api.editAvatar(data.link)
-//   api.editAvatar(avatar)
-//     .then((res) => {
-//       userInfo.setUserInfo(res);
-//     })
-//     .catch(console.log)
-//   //   .finally(() => {
-//   //     handleAvatarSubmit.close();
-//   // })
-// }
 
 // Popups
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
@@ -151,7 +166,6 @@ const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
     .finally(() => {
       profilePopupForm.close();
     })
-    .catch(console.log);
 });
 
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
@@ -165,6 +179,8 @@ const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
   validatePlaceForm.resetValidation();
   placesPopupForm.close();
 });
+
+// const deleteCardPopup = new PopupWithForm(".")
 
 const avatarChangePopup = new PopupWithForm(
   ".popup_type_avatar-change",

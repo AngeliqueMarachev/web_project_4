@@ -72,7 +72,6 @@ class Api {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
           method: 'DELETE',
           headers: this._headers,
-            body: JSON.stringify(avatar),
         }).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
      }
 };

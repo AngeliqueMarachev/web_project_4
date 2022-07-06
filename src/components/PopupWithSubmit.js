@@ -8,10 +8,12 @@ export default class PopupWithSubmit extends Popup {
         this._handleFormSubmit = handleFormSubmit;
     }
 
-    open(evt, cardId) {
+    open(cardId) {
+        console.log(cardId)
         super.open();
         this._button.textContent = "Yes";
         this._cardId = cardId;
+     
     }
 
     setEventListeners() {
@@ -19,7 +21,7 @@ export default class PopupWithSubmit extends Popup {
         this._form.addEventListener("submit", evt => {
             evt.preventDefault();
             this._button.textContent = "Saving...";
-            this._handleFormSubmit(this._card, this._cardId);
+            this._handleFormSubmit(this._cardId);
         })
     }
 }

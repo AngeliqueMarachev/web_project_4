@@ -8,11 +8,10 @@ export default class PopupWithSubmit extends Popup {
         this._handleFormSubmit = handleFormSubmit;
     }
 
-    open(cardId) {
-        console.log(cardId)
+    open(card) {
         super.open();
         this._button.textContent = "Yes";
-        this._cardId = cardId;
+        this._card = card;
      
     }
 
@@ -21,7 +20,11 @@ export default class PopupWithSubmit extends Popup {
         this._form.addEventListener("submit", evt => {
             evt.preventDefault();
             this._button.textContent = "Saving...";
-            this._handleFormSubmit(this._cardId);
+            this._handleFormSubmit(this._card);
         })
     }
 }
+// it inherits Popup, 
+// in constructor, it searches for the form, button and, the callback funtion handleFormSubmit in confirmDeletePopup from index.js
+// when you open it, it takes the cardId as argument, whcih means you have to call cardId in index.js on renderCard function when you open up confirmDeletePopup
+//

@@ -38,12 +38,12 @@ const userInfo = new UserInfo({
 const confirmDeletePopup = new PopupWithSubmit({
   popupSelector: ".popup_type_confirm-delete",
 
-  handleFormSubmit: (cardElement, cardId) => {
-    // console.log(cardId)
+  handleFormSubmit: (card) => {  // takes handleFormSubmit as argument, which calls card from PopupWithSubmit class
+  
     api
-      .deleteCard(cardId)
+      .deleteCard(card.getId())
       .then(() => {
-        cardElement.remove();
+        card.removeCard();
       })
     .catch(console.log)
       .finally(() => {
@@ -63,12 +63,11 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(() => userInfo.setAvatarVisible())
   .catch(console.log);
 
-  // NEW
+  
   const handleCardClick = (data) => {
     imagePreviewPopup.open(data);
   }
 
-  // NEW
   const handleLikeIcon = (cardElement) => {
     if(cardElement.isLiked()) {
       api.removeLike(cardElement.getId())
@@ -112,18 +111,10 @@ const renderCard = (data) => {
     },
 
     () => {
-      confirmDeletePopup.open();
-       
-      confirmDeletePopup: () => {
-        api.deleteCard()
-        then(() => {
-          cardElement.deleteCard()
-        })
-        then(() => {
-          confirmDeletePopup.close();
-        })
-          .catch(console.log);
-      };
+      confirmDeletePopup.open(cardElement);
+      // when you open this popup, you call it with the card from PopupWithSubmit,
+      // and if person confirms delete, your handleFormSubmit function from PopupWithSubmit event listeners
+      // will be called with the instance of the card
     },
     
     () => {

@@ -4,7 +4,8 @@ export default class Card {
     this._link = data.link;
     this._likes = data.likes;
     this._id = data._id;
-    this._userId = userId;
+    this._userId = userId; // my identifier
+    this._ownerId = data.owner._id; // other user identifier
 
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
@@ -75,6 +76,10 @@ export default class Card {
     this._deleteCardButton = this._cardElement.querySelector(
       ".gallery__delete-button"
     );
+
+    if (this._userId !== this._ownerId) { // if my id does not match the owner id, hide the trash icon
+      this._deleteCardButton.style.display = "none";
+    }
 
     this._cardImage.src = this._link;
     this._cardImage.alt = `${this._name}`;

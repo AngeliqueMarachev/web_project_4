@@ -84,7 +84,7 @@ class Api {
 export const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
     headers: {
-      authorization: "9398a483-484e-4ebd-a374-b6b3b985e9c4",
+      authorization: "42b9ea6f-407e-4ca1-96e0-0f09ff65d270",
       "Content-Type": "application/json"
     }
 })

@@ -18,21 +18,21 @@
   width: 120px;
   height: 120px;
   border-radius: 60px;
+  background-size: cover;
+  position: relative;
 }
 
 .profile__avatar:hover {
-  opacity: 0.6;
   cursor: pointer;
-}
-
-.profile__avatar-hover {
   background-image: url(../images/update_avatar.svg);
   background-repeat: no-repeat;
   background-position: center;
-  /* display: flex; */
-  visibility: visible;
+  color: #ffffff;
+  opacity: 0.8;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
-
 
 .profile__info {
   display: grid;

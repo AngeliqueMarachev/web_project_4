@@ -37,6 +37,7 @@ export default class FormValidator {
   };
 
   _toggleButton = () => {
+   
     if (this._isFormValid()) {
       this._enableButton();
     } else {

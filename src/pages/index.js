@@ -10,7 +10,6 @@ import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import { api } from "../utils/Api.js";
 
 import {
-  initialCards,
   settings,
   openProfileModalButton,
   editProfilePopup,
@@ -20,11 +19,8 @@ import {
   titleInput,
   descriptionInput,
   addAvatarPopup,
-  avatar,
-  setImageSource,
+  avatar
 } from "../utils/constants.js";
-
-// setImageSource(logoImg, logoSrc);
 
 let userId;
 
@@ -33,23 +29,6 @@ const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
   userOccupationSelector: ".profile__occupation",
   userAvatarSelector: ".profile__avatar",
-});
-
-const confirmDeletePopup = new PopupWithSubmit({
-  popupSelector: ".popup_type_confirm-delete",
-
-  handleFormSubmit: (card) => {  // takes handleFormSubmit as argument, which calls card from PopupWithSubmit class
-  
-    api
-      .deleteCard(card.getId())
-      .then(() => {
-        card.removeCard();
-      })
-    .catch(console.log)
-      .finally(() => {
-        confirmDeletePopup.close();
-      })
-  },
 });
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -63,42 +42,11 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(() => userInfo.setAvatarVisible())
   .catch(console.log);
 
-  
-  const handleCardClick = (data) => {
-    imagePreviewPopup.open(data);
-  }
-
-  const handleLikeIcon = (cardElement) => {
-    if(cardElement.isLiked()) {
-      api.removeLike(cardElement.getId())
-        .then(updatedCard => {
-          cardElement.setLikeCounter(updatedCard.likes)
-      })
-    } else {
-      api.addLike(cardElement.getId())
-        .then(updatedCard => {
-          cardElement.setLikeCounter(updatedCard.likes)
-      })
-    }
-  }
-
-  const handleDeleteClick = (card) => {
-    confirmDeletePopup.open()
-  }
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
-validateProfileForm.enableValidation();
-validateProfileForm.disableButton();
-
 const validatePlaceForm = new FormValidator(settings, addCardPopup);
-validatePlaceForm.enableValidation();
-validatePlaceForm.disableButton();
-
 const validateAvatarForm = new FormValidator(settings, addAvatarPopup);
-validateAvatarForm.enableValidation();
-validateAvatarForm.disableButton();
-   
 
 // Create Card
 const renderCard = (data) => {
@@ -148,6 +96,7 @@ const section = new Section(
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
 
 const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
+profilePopupForm.changeButtonText("Saving...")
   api
     .editProfile({ name: data.user, about: data.occupation })
     .then((res) => {
@@ -160,45 +109,72 @@ const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
 });
 
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
+  placesPopupForm.changeButtonText("Saving...")
   api
     .addCard({ name: data.name, link: data.link })
     .then((res) => {
       renderCard(res);
     })
-    .catch(console.log);
-
-  validatePlaceForm.resetValidation();
-  placesPopupForm.close();
+    .catch(console.log)
+    .finally(() => {
+      validatePlaceForm.resetValidation();
+      placesPopupForm.close();
+    })
 });
-
-// const deleteCardPopup = new PopupWithForm(".")
 
 const avatarChangePopup = new PopupWithForm(
   ".popup_type_avatar-change",
   (avatar) => {
+    avatarChangePopup.changeButtonText("Saving...")
     api
       .editAvatar(avatar)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
+      })
+      .catch(console.log)
+      .finally(() => {
+        validatePlaceForm.resetValidation();
         avatarChangePopup.close();
       })
-      .catch(console.log);
   }
 );
 
+const confirmDeletePopup = new PopupWithSubmit({
+  popupSelector: ".popup_type_confirm-delete",
+
+  handleFormSubmit: (card) => {  // takes handleFormSubmit as argument, which calls card from PopupWithSubmit class
+    api
+      .deleteCard(card.getId())
+      .then(() => {
+        card.removeCard();
+      })
+    .catch(console.log)
+      .finally(() => {
+        confirmDeletePopup.close();
+      })
+  },
+});
+
+// Events
 openProfileModalButton.addEventListener("click", () => {
   profilePopupForm.open();
   const info = userInfo.getUserInfo();
   titleInput.value = info.user;
   descriptionInput.value = info.occupation;
+  validateProfileForm.enableValidation();
+  validateProfileForm.disableButton();
 });
 
 addCardButton.addEventListener("click", () => {
   placesPopupForm.open();
+  validatePlaceForm.enableValidation();
+  validatePlaceForm.disableButton();
 });
 
 avatar.addEventListener("click", () => {
   avatarChangePopup.open();
+  validateAvatarForm.enableValidation();
+  validateAvatarForm.disableButton();
 });
 
 profilePopupForm.setEventListeners();

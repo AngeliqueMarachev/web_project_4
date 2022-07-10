@@ -96,17 +96,18 @@ const section = new Section(
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
 
 const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
-profilePopupForm.changeButtonText("Saving...")
-  api
-    .editProfile({ name: data.user, about: data.occupation })
-    .then((res) => {
-      userInfo.setUserInfo({ user: res.name, occupation: res.about });
-    })
-    .catch(console.log)
-    .finally(() => {
-      profilePopupForm.close();
-    })
-});
+  profilePopupForm.changeButtonText("Saving...")
+    api
+      .editProfile({ name: data.user, about: data.occupation })
+      .then((res) => {
+        userInfo.setUserInfo({ user: res.name, occupation: res.about });
+        profilePopupForm.close();
+      })
+      .catch(console.log)
+      .finally(() => {
+        profilePopupForm.changeButtonText("Save")
+      })
+  });
 
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
   placesPopupForm.changeButtonText("Saving...")
@@ -114,27 +115,28 @@ const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
     .addCard({ name: data.name, link: data.link })
     .then((res) => {
       renderCard(res);
+      placesPopupForm.close();
     })
     .catch(console.log)
     .finally(() => {
-      validatePlaceForm.resetValidation();
-      placesPopupForm.close();
+      placesPopupForm.changeButtonText("Save")
     })
 });
 
 const avatarChangePopup = new PopupWithForm(
   ".popup_type_avatar-change",
   (avatar) => {
-    avatarChangePopup.changeButtonText("Saving...")
+   
+    avatarChangePopup.changeButtonText("Saving...");
     api
       .editAvatar(avatar)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
+        avatarChangePopup.close();
       })
       .catch(console.log)
       .finally(() => {
-        validatePlaceForm.resetValidation();
-        avatarChangePopup.close();
+        avatarChangePopup.changeButtonText("Save")
       })
   }
 );

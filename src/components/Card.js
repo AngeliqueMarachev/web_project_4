@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(data, cardTemplateSelector, userId, handleCardClick, handleDeleteClick, handleLikeIcon ) {
+  constructor(data, cardTemplateSelector, userId, handleCardClick, handleDeleteClick, handleLikeIcon, likeCounter ) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
+    // this._likeCounter = this._likes.length;
     this._id = data._id;
     this._userId = userId;
     this._ownerId = data.owner._id; 
@@ -43,6 +44,9 @@ export default class Card {
     const likeCounter = this._likes.length
     this._cardElement.querySelector(".gallery__likes")
       .textContent = likeCounter;
+
+    // this._cardElement.querySelector('.gallery__likes').textContent = this._likeCounter;
+
 
     const cardIsLiked = this.isLiked();
 

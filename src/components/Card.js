@@ -4,6 +4,7 @@ export default class Card {
     this._link = data.link;
     this._likes = data.likes;
     // this._likeCounter = this._likes.length;
+    // this._likeCounter = data.likes.length;
     this._id = data._id;
     this._userId = userId;
     this._ownerId = data.owner._id; 
@@ -47,6 +48,7 @@ export default class Card {
 
     // this._cardElement.querySelector('.gallery__likes').textContent = this._likeCounter;
 
+    // this._likeCounter.textContent = this._likes.length;
 
     const cardIsLiked = this.isLiked();
 

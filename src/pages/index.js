@@ -35,7 +35,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userId = userData._id;
 
-    userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
+    // userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
+    // userInfo.setUserAvatar({ userData });
+     userInfo.setUserAvatar(userData);
     userInfo.setUserAvatar(userData.avatar);
     section.renderItems(initialCards);
   })
@@ -45,8 +47,13 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
+validateProfileForm.enableValidation();
+
 const validatePlaceForm = new FormValidator(settings, addCardPopup);
+validatePlaceForm.enableValidation();
+
 const validateAvatarForm = new FormValidator(settings, addAvatarPopup);
+validateAvatarForm.enableValidation();
 
 // Create Card
 const renderCard = (data) => {
@@ -163,20 +170,20 @@ openProfileModalButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   titleInput.value = info.user;
   descriptionInput.value = info.occupation;
-  validateProfileForm.enableValidation();
+  validateProfileForm.resetValidation();
   validateProfileForm.disableButton();
 });
 
 addCardButton.addEventListener("click", () => {
   placesPopupForm.open();
-  validatePlaceForm.enableValidation();
+  validatePlaceForm.resetValidation();
   validatePlaceForm.disableButton();
 });
 
 avatar.addEventListener("click", () => {
   avatarChangePopup.open();
-  validateAvatarForm.enableValidation();
-  validateAvatarForm.disableButton();
+  validateAvatarForm.resetValidation();
+  // validateAvatarForm.disableButton();
 });
 
 profilePopupForm.setEventListeners();

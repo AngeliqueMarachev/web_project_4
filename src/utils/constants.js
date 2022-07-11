@@ -38,7 +38,7 @@ export const editProfilePopup = document.querySelector(".popup__form-edit");
 export const addCardButton = document.querySelector(".profile__add-button");
 export const profileName = document.querySelector(".profile__name");
 export const profileOccupation = document.querySelector(".profile__occupation");
-export const avatar = document.querySelector(".profile__avatar");
+export const avatar = document.querySelector(".profile__avatar-container");
 export const titleInput = editProfilePopup.querySelector(".popup__input_type_name");
 export const descriptionInput = editProfilePopup.querySelector(
   ".popup__input_type_occupation"

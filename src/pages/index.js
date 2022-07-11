@@ -183,7 +183,6 @@ addCardButton.addEventListener("click", () => {
 avatar.addEventListener("click", () => {
   avatarChangePopup.open();
   validateAvatarForm.resetValidation();
-  // validateAvatarForm.disableButton();
 });
 
 profilePopupForm.setEventListeners();

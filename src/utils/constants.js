@@ -58,7 +58,4 @@ export const addAvatarPopup = document.querySelector(".popup_type_avatar-change"
 
 export const logoImg = document.getElementById(".logo");
 
-export const setImageSource = function (imageElement, source) {
-  imageElement.src = source;
-}
 

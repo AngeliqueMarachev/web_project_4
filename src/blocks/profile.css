@@ -18,6 +18,7 @@
   width: 100%;
   object-fit: cover;
   visibility: hidden;
+  z-index: 0;
 }
 
 .profile__avatar-container {

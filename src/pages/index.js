@@ -19,7 +19,7 @@ import {
   titleInput,
   descriptionInput,
   addAvatarPopup,
-  avatar
+  avatar,
 } from "../utils/constants.js";
 
 let userId;
@@ -37,13 +37,12 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     // userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
     // userInfo.setUserAvatar({ userData });
-     userInfo.setUserAvatar(userData);
+    userInfo.setUserAvatar(userData);
     userInfo.setUserAvatar(userData.avatar);
     section.renderItems(initialCards);
   })
   .then(() => userInfo.setAvatarVisible())
   .catch(console.log);
-
 
 // Form Validation
 const validateProfileForm = new FormValidator(settings, editProfilePopup);
@@ -71,23 +70,25 @@ const renderCard = (data) => {
       // and if person confirms delete, your handleFormSubmit function from PopupWithSubmit event listeners
       // will be called with the instance of the card
     },
-    
+
     () => {
       if (cardElement.isLiked()) {
-        api.removeLike(cardElement.getId())
+        api
+          .removeLike(cardElement.getId())
           .then((res) => {
             cardElement.setLikes(res.likes);
           })
           .catch(console.log);
-        
       } else {
-        api.likeCard(cardElement.getId())
+        api
+          .likeCard(cardElement.getId())
           .then((res) => {
             cardElement.setLikes(res.likes);
           })
           .catch(console.log);
       }
-    });
+    }
+  );
   section.addItem(cardElement.createCardElement());
 };
 
@@ -103,21 +104,21 @@ const section = new Section(
 const imagePreviewPopup = new PopupWithImage(".popup_type_preview");
 
 const profilePopupForm = new PopupWithForm(".popup_type_profile", (data) => {
-  profilePopupForm.changeButtonText("Saving...")
-    api
-      .editProfile({ name: data.user, about: data.occupation })
-      .then((res) => {
-        userInfo.setUserInfo({ user: res.name, occupation: res.about });
-        profilePopupForm.close();
-      })
-      .catch(console.log)
-      .finally(() => {
-        profilePopupForm.changeButtonText("Save")
-      })
-  });
+  profilePopupForm.changeButtonText("Saving...");
+  api
+    .editProfile({ name: data.user, about: data.occupation })
+    .then((res) => {
+      userInfo.setUserInfo({ user: res.name, occupation: res.about });
+      profilePopupForm.close();
+    })
+    .catch(console.log)
+    .finally(() => {
+      profilePopupForm.changeButtonText("Save");
+    });
+});
 
 const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
-  placesPopupForm.changeButtonText("Saving...")
+  placesPopupForm.changeButtonText("Saving...");
   api
     .addCard({ name: data.name, link: data.link })
     .then((res) => {
@@ -126,14 +127,13 @@ const placesPopupForm = new PopupWithForm(".popup_type_add-card", (data) => {
     })
     .catch(console.log)
     .finally(() => {
-      placesPopupForm.changeButtonText("Save")
-    })
+      placesPopupForm.changeButtonText("Save");
+    });
 });
 
 const avatarChangePopup = new PopupWithForm(
   ".popup_type_avatar-change",
   (avatar) => {
-   
     avatarChangePopup.changeButtonText("Saving...");
     api
       .editAvatar(avatar)
@@ -143,24 +143,25 @@ const avatarChangePopup = new PopupWithForm(
       })
       .catch(console.log)
       .finally(() => {
-        avatarChangePopup.changeButtonText("Save")
-      })
+        avatarChangePopup.changeButtonText("Save");
+      });
   }
 );
 
 const confirmDeletePopup = new PopupWithSubmit({
   popupSelector: ".popup_type_confirm-delete",
 
-  handleFormSubmit: (card) => {  // takes handleFormSubmit as argument, which calls card from PopupWithSubmit class
+  handleFormSubmit: (card) => {
+    // takes handleFormSubmit as argument, which calls card from PopupWithSubmit class
     api
       .deleteCard(card.getId())
       .then(() => {
         card.removeCard();
       })
-    .catch(console.log)
+      .catch(console.log)
       .finally(() => {
         confirmDeletePopup.close();
-      })
+      });
   },
 });
 

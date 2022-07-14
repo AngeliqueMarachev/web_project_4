@@ -42,7 +42,7 @@ export default class Card {
 
     const cardIsLiked = this.isLiked();
     if(cardIsLiked) {
-      this._cardLikeButton.classList.add("gallery__heart-icon");
+      this._cardLikeButton.classList.add("gallery__heart-icon_clicked");
     } else {
       this._cardLikeButton.classList.remove("gallery__heart-icon_clicked");
     }

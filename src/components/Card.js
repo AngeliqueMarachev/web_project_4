@@ -62,7 +62,7 @@ export default class Card {
     this._cardName = this._cardElement.querySelector(".gallery__text");
     this._cardLikeButton = this._cardElement.querySelector(".gallery__heart-icon");
     this._deleteCardButton = this._cardElement.querySelector(".gallery__delete-button");
-    this._likeCounter = this._cardElement.querySelector(".galley__likes")
+    this._likeCounter = this._cardElement.querySelector(".gallery__likes")
 
     this._cardImage.src = this._link;
     this._cardImage.alt = `${this._name}`;

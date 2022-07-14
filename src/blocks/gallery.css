@@ -94,10 +94,21 @@
   opacity: 1;
 }
 
+.gallery__likes-container {
+     align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+
 .gallery__likes {
   color: black;
   padding-left: 5px;
-}
+    
+
+
+  } 
+
 
 .gallery__delete-button {
   background-image: url(../images/trash_icon.svg);

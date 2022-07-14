@@ -38,7 +38,8 @@ export default class Card {
     this._likes = newLikes;
 
     const likeCounter = this._likes.length 
-    this._cardLikeButton.textContent = likeCounter; 
+    // this._cardLikeButton.textContent = likeCounter; 
+    this._likeCounter.textContent = likeCounter; 
 
     const cardIsLiked = this.isLiked();
     if(cardIsLiked) {

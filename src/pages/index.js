@@ -35,9 +35,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userId = userData._id;
 
-    // userInfo.setUserInfo({ user: userData.name, occupation: userData.about }); // could I just write userData?
-    // userInfo.setUserAvatar({ userData });
-    userInfo.setUserAvatar(userData);
+    userInfo.setUserInfo({ user: userData.name, occupation: userData.about });
     userInfo.setUserAvatar(userData.avatar);
     section.renderItems(initialCards);
   })
@@ -157,11 +155,9 @@ const confirmDeletePopup = new PopupWithSubmit({
       .deleteCard(card.getId())
       .then(() => {
         card.removeCard();
+        confirmDeletePopup.close();
       })
       .catch(console.log)
-      .finally(() => {
-        confirmDeletePopup.close();
-      });
   },
 });
 
